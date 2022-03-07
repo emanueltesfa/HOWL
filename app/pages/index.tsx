@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
+import { Image, Link, BlitzPage, useMutation, Routes, useRouter } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
@@ -11,7 +11,7 @@ import { Form } from "react-final-form"
  * You can delete everything in here and start from scratch if you like.
  */
 
-const UserInfo = () => {
+export const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
 
@@ -52,6 +52,8 @@ const UserInfo = () => {
 }
 
 const Home: BlitzPage = () => {
+  const router = useRouter()
+
   return (
     <div className="container">
       <main>
@@ -61,6 +63,10 @@ const Home: BlitzPage = () => {
         <p>
           <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
         </p>
+        <Link href={"/home"}>
+          <a>click</a>
+        </Link>
+        <button onClick={() => router.push("/home")}>Click here</button>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <Suspense fallback="Loading...">
             <UserInfo />
