@@ -29,7 +29,7 @@ export const UserInfo = () => {
         <div>
           User id: <code>{currentUser.id}</code>
           <br />
-          User role: <code>{currentUser.role}</code>
+          User Name: <code>{currentUser.name}</code>
         </div>
       </>
     )
