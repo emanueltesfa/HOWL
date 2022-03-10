@@ -22,9 +22,11 @@ model User {
   hashedPassword String?
   role           String   @default("USER")
 
-  tokens   Token[]
-  sessions Session[]
-  Profile  Profile[]
+  //Relations
+  tokens     Token[]
+  sessions   Session[]
+  Profile    Profile[]
+  DogProfile DogProfile[]
 }
 
 model Session {
@@ -68,8 +70,8 @@ model Token {
 
 model Profile {
   id           Int      @id @default(autoincrement())
-  uuid         String   @unique @db.Uuid
-  created_by   DateTime @default(now())
+  uuid         String?  @unique @default(uuid())
+  created_by   Int
   updated_by   DateTime @updatedAt
   display_name String   @db.VarChar(50) //Max 50 characters
   DOB          DateTime @default(now())
@@ -79,12 +81,57 @@ model Profile {
   post_number     Int     @default(0)
   profile_pic     String?
   profile_pic_url String?
+
+  //relations
+  DogProfile DogProfile[]
 }
 
-model post {
-  id         Int      @id @default(autoincrement())
-  uuid       String   @unique
-  created_by DateTime @default(now())
-  updated_by DateTime @updatedAt
-  location   String
+model DogProfile {
+  id          Int      @id @default(autoincrement())
+  uuid        String?  @unique @default(uuid())
+  created_by  Int
+  created_at  DateTime @default(now())
+  pet_name    String
+  breed       String
+  age         Int
+  birthday    String
+  temperament String
+
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  profileId Int
+  profile   Profile @relation(fields: [profileId], references: [id])
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  uuid        String?  @unique @default(uuid())
+  created_by  Int
+  updated_by  DateTime @updatedAt
+  location    String
+  body        String
+  is_disabled Boolean  @default(false)
+}
+
+model Location {
+  id            Int      @id @default(autoincrement())
+  uuid          String?  @unique @default(uuid())
+  created_by    Int
+  created_at    DateTime @default(now())
+  location      String
+  location_name String
+  pet_friendly  Boolean  @default(false)
+  been_added    Boolean  @default(false)
+}
+
+model SuggestedLocation {
+  id            Int      @id @default(autoincrement())
+  uuid          String?  @unique @default(uuid())
+  created_by    Int
+  created_at    DateTime @default(now())
+  location      String
+  location_name String
+
+  pet_friendly Boolean @default(false)
+  is_added     Boolean @default(false)
 }
