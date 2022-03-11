@@ -63,10 +63,10 @@ const Home: BlitzPage = () => {
         <p>
           <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
         </p>
+
         <Link href={"/home"}>
-          <a>click</a>
+          <button>Click here</button>
         </Link>
-        <button onClick={() => router.push("/home")}>Click here</button>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <Suspense fallback="Loading...">
             <UserInfo />

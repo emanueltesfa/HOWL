@@ -17,7 +17,14 @@ const HomePage = () => {
     console.log("Submit")
     console.log(userInput)
   }
-  return <div className="container">Home page</div>
+  return (
+    <div className="container">
+      Home page
+      <Link href={"/profiles"}>
+        <button>Profile</button>
+      </Link>
+    </div>
+  )
 }
 
 HomePage.suppressFirstRenderFlicker = true

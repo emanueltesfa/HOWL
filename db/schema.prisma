@@ -1,32 +1,25 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
 }
 
-// --------------------------------------
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id             Int          @id @default(autoincrement())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
   name           String?
-  email          String   @unique
+  email          String       @unique
   hashedPassword String?
-  role           String   @default("USER")
-
-  //Relations
-  tokens     Token[]
-  sessions   Session[]
-  Profile    Profile[]
-  DogProfile DogProfile[]
+  role           String       @default("USER")
+  DogProfile     DogProfile[]
+  Profile        Profile[]
+  sessions       Session[]
+  tokens         Token[]
 }
 
 model Session {
@@ -39,9 +32,8 @@ model Session {
   antiCSRFToken      String?
   publicData         String?
   privateData        String?
-
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?
+  userId             Int?
+  user               User?     @relation(fields: [userId], references: [id])
 }
 
 model Token {
@@ -50,40 +42,27 @@ model Token {
   updatedAt   DateTime @updatedAt
   hashedToken String
   type        String
-  // See note below about TokenType enum
-  // type        TokenType
   expiresAt   DateTime
   sentTo      String
-
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 
   @@unique([hashedToken, type])
 }
 
-// NOTE: It's highly recommended to use an enum for the token type
-//       but enums only work in Postgres.
-//       See: https://blitzjs.com/docs/database-overview#switch-to-postgre-sql
-// enum TokenType {
-//   RESET_PASSWORD
-// }
-
 model Profile {
-  id           Int      @id @default(autoincrement())
-  uuid         String?  @unique @default(uuid())
-  created_by   Int
-  updated_by   DateTime @updatedAt
-  display_name String   @db.VarChar(50) //Max 50 characters
-  DOB          DateTime @default(now())
-  user         User     @relation(fields: [userId], references: [id])
-  userId       Int
-
-  post_number     Int     @default(0)
+  id              Int          @id @default(autoincrement())
+  uuid            String?      @unique @default(uuid())
+  created_by      Int
+  updated_by      DateTime     @updatedAt
+  display_name    String       @db.VarChar(50)
+  DOB             DateTime     @default(now())
+  userId          Int
+  post_number     Int          @default(0)
   profile_pic     String?
   profile_pic_url String?
-
-  //relations
-  DogProfile DogProfile[]
+  user            User         @relation(fields: [userId], references: [id])
+  DogProfile      DogProfile[]
 }
 
 model DogProfile {
@@ -96,11 +75,10 @@ model DogProfile {
   age         Int
   birthday    String
   temperament String
-
-  userId    Int
-  user      User    @relation(fields: [userId], references: [id])
-  profileId Int
-  profile   Profile @relation(fields: [profileId], references: [id])
+  userId      Int
+  profileId   Int
+  profile     Profile  @relation(fields: [profileId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Post {
@@ -109,8 +87,8 @@ model Post {
   created_by  Int
   updated_by  DateTime @updatedAt
   location    String
-  body        String
   is_disabled Boolean  @default(false)
+  body        String
 }
 
 model Location {
@@ -131,7 +109,14 @@ model SuggestedLocation {
   created_at    DateTime @default(now())
   location      String
   location_name String
+  pet_friendly  Boolean  @default(false)
+  is_added      Boolean  @default(false)
+}
 
-  pet_friendly Boolean @default(false)
-  is_added     Boolean @default(false)
+model test {
+  id         Int      @id @default(autoincrement())
+  uuid       String?  @unique @default(uuid())
+  created_by Int
+  created_at DateTime @default(now())
+  body       String
 }
