@@ -54,3 +54,17 @@ lib-cov
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+.yarn.lock
+yarn.lock
+package-lock.json
+package.json
+
+# Uploads
+public/uploads/*
+
+# Migrations
+db/migrations/*
+app/core/hooks/useGetBPValue.ts
+app/core/hooks/useGetBPValue.ts
+*.csv
