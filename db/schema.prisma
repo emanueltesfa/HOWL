@@ -9,17 +9,20 @@ datasource db {
 }
 
 model User {
-  id             Int          @id @default(autoincrement())
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  name           String?
-  email          String       @unique
-  hashedPassword String?
-  role           String       @default("USER")
-  DogProfile     DogProfile[]
-  Profile        Profile[]
-  sessions       Session[]
-  tokens         Token[]
+  id               Int             @id @default(autoincrement())
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  name             String?
+  email            String          @unique
+  hashedPassword   String?
+  role             String          @default("USER")
+  dob              String
+  profile_pic_file String
+  DogProfile       DogProfile[]
+  sessions         Session[]
+  tokens           Token[]
+  FavLocation      FavLocation[]
+  loginAttempts    loginAttempts[]
 }
 
 model Session {
@@ -50,35 +53,19 @@ model Token {
   @@unique([hashedToken, type])
 }
 
-model Profile {
-  id              Int          @id @default(autoincrement())
-  uuid            String?      @unique @default(uuid())
-  created_by      Int
-  updated_by      DateTime     @updatedAt
-  display_name    String       @db.VarChar(50)
-  DOB             DateTime     @default(now())
-  userId          Int
-  post_number     Int          @default(0)
-  profile_pic     String?
-  profile_pic_url String?
-  user            User         @relation(fields: [userId], references: [id])
-  DogProfile      DogProfile[]
-}
-
 model DogProfile {
-  id          Int      @id @default(autoincrement())
-  uuid        String?  @unique @default(uuid())
-  created_by  Int
-  created_at  DateTime @default(now())
-  pet_name    String
-  breed       String
-  age         Int
-  birthday    String
-  temperament String
-  userId      Int
-  profileId   Int
-  profile     Profile  @relation(fields: [profileId], references: [id])
-  user        User     @relation(fields: [userId], references: [id])
+  id              Int      @id @default(autoincrement())
+  uuid            String?  @unique @default(uuid())
+  created_by      Int
+  created_at      DateTime @default(now())
+  dog_profile_pic String
+  pet_name        String
+  breed           String
+  age             Int
+  sex             String
+  temperament     String
+  user_id         Int
+  user            User     @relation(fields: [user_id], references: [id])
 }
 
 model Post {
@@ -89,17 +76,31 @@ model Post {
   location    String
   is_disabled Boolean  @default(false)
   body        String
+  like_count  Int      @default(0)
 }
 
 model Location {
-  id            Int      @id @default(autoincrement())
-  uuid          String?  @unique @default(uuid())
+  id            Int           @id @default(autoincrement())
+  uuid          String?       @unique @default(uuid())
   created_by    Int
-  created_at    DateTime @default(now())
+  created_at    DateTime      @default(now())
   location      String
   location_name String
-  pet_friendly  Boolean  @default(false)
-  been_added    Boolean  @default(false)
+  pet_friendly  Boolean       @default(false)
+  been_added    Boolean       @default(false)
+  FavLocation   FavLocation[]
+}
+
+model FavLocation {
+  id          Int      @id @default(autoincrement())
+  uuid        String?  @unique @default(uuid())
+  created_by  Int
+  created_at  DateTime @default(now())
+  location_id Int
+  Location    Location @relation(fields: [location_id], references: [id])
+  user_id     Int
+  user        User     @relation(fields: [user_id], references: [id])
+
 }
 
 model SuggestedLocation {
@@ -113,10 +114,11 @@ model SuggestedLocation {
   is_added      Boolean  @default(false)
 }
 
-model test {
+model loginAttempts {
   id         Int      @id @default(autoincrement())
   uuid       String?  @unique @default(uuid())
   created_by Int
   created_at DateTime @default(now())
-  body       String
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
 }
