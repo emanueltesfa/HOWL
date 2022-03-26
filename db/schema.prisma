@@ -16,8 +16,8 @@ model User {
   email            String          @unique
   hashedPassword   String?
   role             String          @default("USER")
-  dob              String
-  profile_pic_file String
+  dob              String?
+  profile_pic_file String?
   DogProfile       DogProfile[]
   sessions         Session[]
   tokens           Token[]
@@ -58,12 +58,12 @@ model DogProfile {
   uuid            String?  @unique @default(uuid())
   created_by      Int
   created_at      DateTime @default(now())
-  dog_profile_pic String
+  dog_profile_pic String?
   pet_name        String
   breed           String
-  age             Int
-  sex             String
-  temperament     String
+  age             Int?
+  sex             String?
+  temperament     String?
   user_id         Int
   user            User     @relation(fields: [user_id], references: [id])
 }

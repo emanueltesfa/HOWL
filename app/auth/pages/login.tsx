@@ -1,6 +1,8 @@
 import { useRouter, BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
+import LandingLayout from "app/core/layouts/LandingLayout"
+import { Suspense } from "react"
 
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
@@ -18,6 +20,9 @@ const LoginPage: BlitzPage = () => {
 }
 
 LoginPage.redirectAuthenticatedTo = "/"
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
-
+LoginPage.getLayout = (page) => (
+  <Suspense fallback={"Loading..."}>
+    <LandingLayout title="Home">{page}</LandingLayout>
+  </Suspense>
+)
 export default LoginPage
