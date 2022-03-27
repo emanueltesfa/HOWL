@@ -1,4 +1,5 @@
 import { Head, BlitzLayout } from "blitz"
+import { Suspense } from "react"
 
 const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
   return (
@@ -8,7 +9,7 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {children}
+      <Suspense fallback="Loading...">{children}</Suspense>
     </>
   )
 }

@@ -12,7 +12,7 @@ export default resolver.pipe(
   resolver.authorize(),
   async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const loginAttempt = await db.loginAttempt.findFirst({ where: { id } })
+    const loginAttempt = await db.loginAttempts.findFirst({ where: { id } })
 
     if (!loginAttempt) throw new NotFoundError()
 

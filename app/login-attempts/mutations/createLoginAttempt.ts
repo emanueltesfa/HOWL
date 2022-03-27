@@ -3,7 +3,8 @@ import db from "db"
 import { z } from "zod"
 
 const CreateLoginAttempt = z.object({
-  name: z.string(),
+  created_by: z.number(),
+  user_id: z.number(),
 })
 
 export default resolver.pipe(

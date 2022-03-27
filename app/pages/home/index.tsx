@@ -9,8 +9,9 @@ import logo from "public/logo.png"
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
  */
-const HomePage = () => {
+const HomePage: BlitzPage = () => {
   const [userInput, setUserInput] = useState<string>("")
+  const user = useCurrentUser()
 
   const handleSUbmit = (event: any) => {
     event.preventDefault()
@@ -20,9 +21,10 @@ const HomePage = () => {
   return (
     <div className="container">
       Home page
-      <Link href={"/profiles"}>
+      <Link href={`/users/${user!.id}`}>
         <button>Profile</button>
       </Link>
+      <h1>{user!.name}</h1>
     </div>
   )
 }

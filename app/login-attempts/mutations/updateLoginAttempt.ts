@@ -4,7 +4,7 @@ import { z } from "zod"
 
 const UpdateLoginAttempt = z.object({
   id: z.number(),
-  name: z.string(),
+  user_id: z.number(),
 })
 
 export default resolver.pipe(

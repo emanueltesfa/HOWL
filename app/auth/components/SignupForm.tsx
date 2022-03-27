@@ -3,6 +3,7 @@ import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
+import updateUser from "app/users/mutations/updateUser"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -10,6 +11,7 @@ type SignupFormProps = {
 
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
+  const [userNameUpdate] = useMutation(updateUser)
 
   return (
     <div>
@@ -21,7 +23,14 @@ export const SignupForm = (props: SignupFormProps) => {
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values) => {
           try {
-            await signupMutation(values)
+            const user = await signupMutation(values)
+            // console.log("Values: ", values.name)
+            await userNameUpdate({
+              id: user!.id,
+              name: values.name,
+              dob: "",
+              profile_pic_file: "",
+            })
             props.onSuccess?.()
           } catch (error: any) {
             if (error.code === "P2002" && error.meta?.target?.includes("email")) {

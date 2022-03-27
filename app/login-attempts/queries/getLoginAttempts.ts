@@ -2,7 +2,7 @@ import { paginate, resolver } from "blitz"
 import db, { Prisma } from "db"
 
 interface GetLoginAttemptsInput
-  extends Pick<Prisma.LoginAttemptFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
+  extends Pick<Prisma.loginAttemptsFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export default resolver.pipe(
   resolver.authorize(),
@@ -16,8 +16,8 @@ export default resolver.pipe(
     } = await paginate({
       skip,
       take,
-      count: () => db.loginAttempt.count({ where }),
-      query: (paginateArgs) => db.loginAttempt.findMany({ ...paginateArgs, where, orderBy }),
+      count: () => db.loginAttempts.count({ where }),
+      query: (paginateArgs) => db.loginAttempts.findMany({ ...paginateArgs, where, orderBy }),
     })
 
     return {
