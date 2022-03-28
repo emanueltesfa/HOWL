@@ -4,6 +4,7 @@ import { Form, FORM_ERROR } from "app/core/components/Form"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
 import updateUser from "app/users/mutations/updateUser"
+import createLoginAttempt from "app/login-attempts/mutations/createLoginAttempt"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -12,6 +13,7 @@ type SignupFormProps = {
 export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
   const [userNameUpdate] = useMutation(updateUser)
+  const [createlogin] = useMutation(createLoginAttempt)
 
   return (
     <div>
@@ -24,12 +26,15 @@ export const SignupForm = (props: SignupFormProps) => {
         onSubmit={async (values) => {
           try {
             const user = await signupMutation(values)
-            // console.log("Values: ", values.name)
             await userNameUpdate({
               id: user!.id,
               name: values.name,
-              dob: "",
-              profile_pic_file: "",
+              dob: null,
+              profile_pic_file: null,
+            })
+            await createlogin({
+              user_id: user.id,
+              created_by: user.id,
             })
             props.onSuccess?.()
           } catch (error: any) {

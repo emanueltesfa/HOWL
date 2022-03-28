@@ -1,0 +1,89 @@
+.container {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  font-family: "Roboto", sans-serif;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 40vw;
+}
+
+.howlTitle {
+  margin-top: 5vh;
+  font-size: 70px;
+  color: #00afac;
+}
+
+.backGround {
+  background: #4e568b;
+  height: 105vh;
+  width: 105vw;
+}
+
+.customshapedividerbottom1648429665 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.customshapedividerbottom1648429665 svg {
+  position: relative;
+  display: block;
+  width: calc(252% + 1.3px);
+  height: 498px;
+  transform: rotateY(180deg);
+}
+
+.customshapedividerbottom1648429665 .shapefill {
+  fill: #00afac;
+}
+
+.loginFormBack {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 1rem;
+}
+
+.loginField {
+  width: 17vw;
+  background: transparent;
+  outline: none;
+  padding: 0.5rem;
+  border: none;
+}
+
+.passwordLink {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #fff7d6;
+  font-size: small;
+}
+
+.passwordLinkBtn {
+  margin-top: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  transition: 0.3s ease;
+  color: #fff7d6;
+}
+
+.passwordLinkBtn:hover {
+  color: rgba(0, 0, 0, 0.5);
+}

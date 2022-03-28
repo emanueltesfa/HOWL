@@ -40,14 +40,31 @@ export function Form<S extends z.ZodType<any, any>>({
           )}
 
           {submitText && (
-            <button type="submit" disabled={submitting}>
+            <button type="submit" disabled={submitting} className="butn">
               {submitText}
             </button>
           )}
 
           <style global jsx>{`
             .form > * + * {
-              margin-top: 1rem;
+              margin-top: 0.5rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+            }
+            .butn {
+              margin-left: 5vw;
+              background: transparent;
+              border: none;
+              color: #fff7d6;
+              font-size: medium;
+              transition: 0.3s ease;
+              width: 7rem;
+            }
+            .butn:hover {
+              cursor: pointer;
+              color: rgba(0, 0, 0, 0.5);
             }
           `}</style>
         </form>

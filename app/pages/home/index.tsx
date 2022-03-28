@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react"
+import React, { Suspense, useState } from "react"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -21,10 +21,14 @@ const HomePage: BlitzPage = () => {
   return (
     <div className="container">
       Home page
-      <Link href={`/users/${user!.id}`}>
-        <button>Profile</button>
-      </Link>
-      <h1>{user!.name}</h1>
+      {user != undefined && (
+        <React.Fragment>
+          <Link href={`/users/${user?.id}`}>
+            <button>Profile</button>
+          </Link>
+          <h1>{user!.name}</h1>
+        </React.Fragment>
+      )}
     </div>
   )
 }

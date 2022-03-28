@@ -30,6 +30,8 @@
     "react": "18.0.0-beta-149b420f6-20211119",
     "react-dom": "18.0.0-alpha-5ca4b0433-20211020",
     "react-final-form": "6.5.8",
+    "sass": "1.49.9",
+    "scss": "0.2.4",
     "zod": "3.12.0"
   },
   "devDependencies": {

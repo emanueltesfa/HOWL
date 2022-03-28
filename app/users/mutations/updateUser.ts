@@ -5,8 +5,8 @@ import { z } from "zod"
 const UpdateUser = z.object({
   id: z.number(),
   name: z.string(),
-  dob: z.string(),
-  profile_pic_file: z.string(),
+  dob: z.string().nullable(),
+  profile_pic_file: z.string().nullable(),
 })
 
 export default resolver.pipe(
