@@ -75,7 +75,6 @@
 }
 
 .passwordLinkBtn {
-  margin-top: 0.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -86,4 +85,21 @@
 
 .passwordLinkBtn:hover {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.howlSubText {
+  font-size: medium;
+  font-weight: 100;
+  color: #00afac;
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.underLine {
+  border-bottom: 1px solid #00afac;
+  min-width: 90%;
 }

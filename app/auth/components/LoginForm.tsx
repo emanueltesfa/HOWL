@@ -52,7 +52,6 @@ export const LoginForm = (props: LoginFormProps) => {
       </Form>
 
       <div className={styles.passwordLink}>
-        Don&apos;t have an account?{" "}
         <Link href={Routes.SignupPage()}>
           <button className={styles.passwordLinkBtn}>Sign Up</button>
         </Link>

@@ -70,7 +70,12 @@ const Home: BlitzPage = () => {
           </svg>
         </div>
         <div className={styles.container}>
-          <div className={styles.howlTitle}>HOWL</div>
+          <div className={styles.titleContainer}>
+            <div className={styles.howlTitle}>HOWL</div>
+            <hr className={styles.underLine} />
+            <div className={styles.howlSubText}>Come sniff out some new friends.</div>
+          </div>
+
           <div>
             <LoginForm
               onSuccess={(_user) => {
