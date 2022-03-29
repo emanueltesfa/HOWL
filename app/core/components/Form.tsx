@@ -54,7 +54,6 @@ export function Form<S extends z.ZodType<any, any>>({
               justify-content: center;
             }
             .butn {
-              margin-left: 5vw;
               background: transparent;
               border: none;
               color: #fff7d6;

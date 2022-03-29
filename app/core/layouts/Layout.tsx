@@ -3,6 +3,8 @@ import { Suspense } from "react"
 import NavBar from "../components/NavBar/Navbar"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 
+const styles = require("app/core/layouts/layout.module.scss")
+
 const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
   const user = useCurrentUser()
 
@@ -20,7 +22,9 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
           </Suspense>
         )}
 
-        {children}
+        <main className={styles.layoutContainer}>
+          <main className={styles.layoutContent}>{children}</main>
+        </main>
       </Suspense>
     </>
   )

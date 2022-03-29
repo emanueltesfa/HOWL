@@ -1,0 +1,34 @@
+.container {
+  position: fixed;
+  top: 0%;
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  min-height: 5vh;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+  background: #4e568b;
+  color: #fff7d6;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  min-width: 20vw;
+  justify-content: space-evenly;
+}
+
+.tag {
+  text-decoration: none;
+  color: #fff7d6;
+  background: #4e568b;
+  padding: 1rem;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.tag:hover {
+  transform: translateY(10px);
+  color: black;
+}
