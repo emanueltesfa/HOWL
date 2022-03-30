@@ -13,11 +13,11 @@
   display: flex;
   flex-direction: column;
   // justify-content: center;
-  // align-items: center;
+  align-items: center;
   height: 94vh;
   margin-top: 1vh;
   overflow-y: scroll;
-  width: 50vw;
+  width: 100vw;
   -ms-overflow-style: none;
   scrollbar-width: none; /* Firefox */
 }

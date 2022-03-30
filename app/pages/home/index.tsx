@@ -16,10 +16,14 @@ const HomePage: BlitzPage = () => {
   const user = useCurrentUser()
 
   return (
-    <div>
+    <div className={styles.container}>
       {user != undefined && (
         <React.Fragment>
-          <h1>{user!.name} </h1>
+          <div className={styles.homeSide}>
+            <div>Profile Pic</div>
+            <div>{user!.name}</div>
+            <div></div>
+          </div>
           <div className={styles.content}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Varius qolestie nunc non blandit massa enim
