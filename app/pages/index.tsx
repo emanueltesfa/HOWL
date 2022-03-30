@@ -6,6 +6,7 @@ import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import { Form } from "react-final-form"
 import LoginForm from "app/auth/components/LoginForm"
+import LayoutLanding from "app/core/layouts/LayoutLanding"
 
 const styles = require("../styles/global.module.scss")
 
@@ -100,6 +101,6 @@ const Home: BlitzPage = () => {
 Home.suppressFirstRenderFlicker = true
 Home.redirectAuthenticatedTo = "/home"
 
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
+Home.getLayout = (page) => <LayoutLanding title="Home">{page}</LayoutLanding>
 
 export default Home
