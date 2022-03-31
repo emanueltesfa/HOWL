@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
+import ProfileInfo from "app/core/components/profieSide/showProfileInfo"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -21,7 +22,9 @@ const HomePage: BlitzPage = () => {
         <React.Fragment>
           <div className={styles.homeSide}>
             <div>Profile Pic</div>
-            <div>{user!.name}</div>
+            <div>
+              <ProfileInfo user={user} />
+            </div>
             <div></div>
           </div>
           <div className={styles.content}>
