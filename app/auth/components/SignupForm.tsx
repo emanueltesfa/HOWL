@@ -29,8 +29,8 @@ export const SignupForm = (props: SignupFormProps) => {
             await userNameUpdate({
               id: user!.id,
               name: values.name,
-              dob: null,
-              profile_pic_file: null,
+              dob: "",
+              profile_pic_file: "",
               num_post: 0,
             })
             await createlogin({
