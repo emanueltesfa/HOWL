@@ -15,17 +15,7 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Suspense fallback="Loading...">
-        {user != undefined && (
-          <Suspense fallback="Loading...">
-            <NavBar />
-          </Suspense>
-        )}
-
-        <main className={styles.layoutContainer}>
-          <main className={styles.layoutContent}>{children}</main>
-        </main>
-      </Suspense>
+      {children}
     </>
   )
 }
