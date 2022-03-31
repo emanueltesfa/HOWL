@@ -31,6 +31,7 @@ export const SignupForm = (props: SignupFormProps) => {
               name: values.name,
               dob: null,
               profile_pic_file: null,
+              num_post: 0,
             })
             await createlogin({
               user_id: user.id,
