@@ -8,7 +8,6 @@ import ProfileInfo from "app/core/components/profieSide/showProfileInfo"
 import PostButton from "app/core/components/postButton"
 import InfiniteScroll from "react-infinite-scroll-component"
 import ScrollPost from "app/core/components/scrollPost"
-import { ScrollWizard } from "app/core/components/testScroll"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -27,7 +26,9 @@ const HomePage: BlitzPage = () => {
           <div className={styles.homeSide}>
             <div>Profile Pic</div>
             <div>
-              <ProfileInfo user={user} />
+              <Suspense fallback={"Loading..."}>
+                <ProfileInfo user={user} />
+              </Suspense>
             </div>
             <div></div>
           </div>

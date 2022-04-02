@@ -1,0 +1,22 @@
+.container {
+  min-height: 15vh;
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  margin-bottom: 1vh;
+}
+
+.keep {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.underLine {
+  width: 48vw;
+  border-bottom: 1px solid white;
+  margin-bottom: 1vh;
+}

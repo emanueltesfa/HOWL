@@ -7,6 +7,7 @@ const UpdatePost = z.object({
   body: z.string(),
   created_by: z.number(),
   is_disabled: z.boolean(),
+  like_count: z.number(),
 })
 
 export default resolver.pipe(
