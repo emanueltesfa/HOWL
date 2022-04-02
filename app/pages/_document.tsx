@@ -11,7 +11,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <DocumentHead />
-        <body style={{ margin: "0", fontFamily: "Roboto" }}>
+        <body style={{ margin: "0", fontFamily: "Roboto", position: "relative" }}>
           <Main />
           <BlitzScript />
         </body>

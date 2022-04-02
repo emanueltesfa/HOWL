@@ -1,11 +1,12 @@
 .content {
   display: flex;
-  height: 80vh;
+  height: 95vh;
   width: 50vw;
   overflow-y: scroll;
 }
 
 .container {
+  position: fixed;
   display: flex;
   flex-direction: row;
   margin-top: 1vh;
