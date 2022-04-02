@@ -1,3 +1,4 @@
+import { ScrollWizard } from "app/core/components/testScroll"
 import Layout from "app/core/layouts/Layout"
 import { BlitzPage } from "blitz"
 import React from "react"
@@ -6,6 +7,7 @@ const Search: BlitzPage = () => {
   return (
     <React.Fragment>
       <div>Search</div>
+      <ScrollWizard />
     </React.Fragment>
   )
 }

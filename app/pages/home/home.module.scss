@@ -1,7 +1,8 @@
 .content {
   display: flex;
-  height: 100%;
+  height: 80vh;
   width: 50vw;
+  overflow-y: scroll;
 }
 
 .container {

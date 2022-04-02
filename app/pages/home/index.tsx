@@ -6,6 +6,9 @@ import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import ProfileInfo from "app/core/components/profieSide/showProfileInfo"
 import PostButton from "app/core/components/postButton"
+import InfiniteScroll from "react-infinite-scroll-component"
+import ScrollPost from "app/core/components/scrollPost"
+import { ScrollWizard } from "app/core/components/testScroll"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -28,7 +31,11 @@ const HomePage: BlitzPage = () => {
             </div>
             <div></div>
           </div>
-          <div className={styles.content}></div>
+          <div className={styles.content}>
+            <Suspense fallback={"Loading..."}>
+              <ScrollPost />
+            </Suspense>
+          </div>
           <div className={styles.rightSide}>
             <PostButton props={user} />
           </div>

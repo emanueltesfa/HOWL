@@ -2,7 +2,7 @@ import { Modal } from "@mui/material"
 import getPosts from "app/posts/queries/getPosts"
 import getUser from "app/users/queries/getUser"
 import { Link, useQuery } from "blitz"
-import React, { Suspense, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { createStore } from "state-pool"
 import PostForm from "../postForm"
 
@@ -56,9 +56,21 @@ const ShowRecentUsers = () => {
 
 //Props will just be the current user
 const PostButton = ({ props }) => {
+  const [lat, setLat] = useState<number>(0)
+  const [long, setLong] = useState<number>(0)
+  const [point, setPoint] = useState<typeof center>()
+
+  const center = {
+    lat: 0,
+    lng: 0,
+  }
+
   //Gets user location and it will ask for the users permission
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude)
+      setLong(position.coords.longitude)
+      setPoint({ lat: position.coords.latitude, lng: position.coords.longitude })
       console.log("Lat: ", position.coords.latitude)
       console.log("Long: ", position.coords.longitude)
     })
@@ -66,6 +78,10 @@ const PostButton = ({ props }) => {
 
   const [updateComp, setUpdateComp] = store.useState("updateComp")
   const [showModal, setShowModal] = useState<boolean>(false)
+
+  useEffect(() => {
+    getLocation()
+  }, [])
 
   return (
     <React.Fragment>
@@ -78,7 +94,7 @@ const PostButton = ({ props }) => {
       >
         <React.Fragment>
           <div>
-            <PostForm props={props} />
+            <PostForm props={props} point={point} />
           </div>
         </React.Fragment>
       </Modal>
