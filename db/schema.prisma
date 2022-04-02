@@ -72,11 +72,12 @@ model Post {
   id          Int      @id @default(autoincrement())
   uuid        String?  @unique @default(uuid())
   created_by  Int
-  updated_by  DateTime @updatedAt
-  location    String
+  created_at  DateTime @default(now())
+  updated_by  Int?
+  location    String?
   is_disabled Boolean  @default(false)
   body        String
-  like_count  Int      @default(0)
+  like_count  Int?     @default(0)
 }
 
 model Location {

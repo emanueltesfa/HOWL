@@ -7,10 +7,16 @@
 .container {
   display: flex;
   flex-direction: row;
+  margin-top: 1vh;
 }
 
 .homeSide {
   display: flex;
   flex-direction: column;
   margin-right: 2vw;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
 }

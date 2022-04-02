@@ -24,6 +24,9 @@
     ]
   },
   "dependencies": {
+    "@emotion/react": "11.8.2",
+    "@emotion/styled": "11.8.1",
+    "@mui/material": "5.5.3",
     "@prisma/client": "3.10.0",
     "blitz": "0.45.3",
     "final-form": "4.20.6",
@@ -32,6 +35,7 @@
     "react-final-form": "6.5.8",
     "sass": "1.49.9",
     "scss": "0.2.4",
+    "state-pool": "0.7.1",
     "zod": "3.12.0"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import ProfileInfo from "app/core/components/profieSide/showProfileInfo"
+import PostButton from "app/core/components/postButton"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -27,160 +28,9 @@ const HomePage: BlitzPage = () => {
             </div>
             <div></div>
           </div>
-          <div className={styles.content}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Varius qolestie nunc non blandit massa enim
-            nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan in
-            nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat sed lectus
-            vestibulum mattis ullamcorper velit.Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius quam
-            quisque id diam vel quam elementum pulvinar etiam. Viverra accumsan in nisl nisi
-            scelerisque eu. Feugiat in fermentum posuere urna nec tincidunt praesent semper.
-            Pellentesque habitant morbi tristique senectus et netus. Nisl purus in mollis nunc sed
-            id semper risus in. Tellus molestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis ultricies. Purus viverra accumsan in nisl nisi
-            scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu. Non tellus
-            orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non curabitur
-            gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie nunc non
-            blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus
-            viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque
-            egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque gravida.
-            Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam sollicitudin
-            tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar etiam.
-            Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna nec
-            tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus. Nisl
-            purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan in
-            nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie
-            nunc non blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies.
-            Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue
-            quisque egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque
-            gravida. Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam
-            sollicitudin tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar
-            etiam. Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna
-            nec tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus.
-            Nisl purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa
-            enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan
-            in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie
-            nunc non blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies.
-            Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue
-            quisque egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque
-            gravida. Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam
-            sollicitudin tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar
-            etiam. Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna
-            nec tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus.
-            Nisl purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa
-            enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan
-            in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat suam
-            quisque id diam vel quam elementum pulvinar etiam. Viverra accumsan in nisl nisi
-            scelerisque eu. Feugiat in fermentum posuere urna nec tincidunt praesent semper.
-            Pellentesque habitant morbi tristique senectus et netus. Nisl purus in mollis nunc sed
-            id semper risus in. Tellus molestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis olestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis ultricies. Purus viverra accumsan in nisl nisi
-            scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu. Non tellus
-            orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non curabitur
-            gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat sed lectus
-            vestibulum mattis ullamcorper velit.Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius quam
-            quisque id diam vel quam elementum pulvinar etiam. Viverra accumsan in nisl nisi
-            scelerisque eu. Feugiat in fermentum posuere urna nec tincidunt praesent semper.
-            Pellentesque habitant morbi tristique senectus et netus. Nisl purus in mollis nunc sed
-            id semper risus in. Tellus molestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis ultricies. Purus viverra accumsan in nisl nisi
-            scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu. Non tellus
-            orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non curabitur
-            gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie nunc non
-            blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus
-            viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque
-            egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque gravida.
-            Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam sollicitudin
-            tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar etiam.
-            Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna nec
-            tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus. Nisl
-            purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa enim
-            nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan in
-            nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie
-            nunc non blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies.
-            Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue
-            quisque egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque
-            gravida. Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam
-            sollicitudin tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar
-            etiam. Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna
-            nec tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus.
-            Nisl purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa
-            enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan
-            in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat solestie
-            nunc non blandit massa enim nec dui nunc. In pellentesque massa placerat duis ultricies.
-            Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas congue
-            quisque egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque
-            gravida. Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam
-            sollicitudin tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar
-            etiam. Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna
-            nec tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus.
-            Nisl purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa
-            enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan
-            in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat s
-            ultricies. Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Neque egestas
-            congue quisque egestas diam in arcu. Non tellus orci ac auctor augue mauris augue neque
-            gravida. Volutpat lacus laoreet non curabitur gravida. Ut porttitor leo a diam
-            sollicitudin tempor id. Ac feugiat sed lectus vestibulum mattis ullamcorper velit.Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Varius quam quisque id diam vel quam elementum pulvinar
-            etiam. Viverra accumsan in nisl nisi scelerisque eu. Feugiat in fermentum posuere urna
-            nec tincidunt praesent semper. Pellentesque habitant morbi tristique senectus et netus.
-            Nisl purus in mollis nunc sed id semper risus in. Tellus molestie nunc non blandit massa
-            enim nec dui nunc. In pellentesque massa placerat duis ultricies. Purus viverra accumsan
-            in nisl nisi scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu.
-            Non tellus orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non
-            curabitur gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat sed lectus
-            vestibulum mattis ullamcorper velit.Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius quam
-            quisque id diam vel quam elementum pulvinar etiam. Viverra accumsan in nisl nisi
-            scelerisque eu. Feugiat in fermentum posuere urna nec tincidunt praesent semper.
-            Pellentesque habitant morbi tristique senectus et netus. Nisl purus in mollis nunc sed
-            id semper risus in. Tellus molestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis ultricies. Purus viverra accumsan in nisl nisi
-            scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu. Non tellus
-            orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non curabitur
-            gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat sed lectus
-            vestibulum mattis ullamcorper velit.Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Varius quam
-            quisque id diam vel quam elementum pulvinar etiam. Viverra accumsan in nisl nisi
-            scelerisque eu. Feugiat in fermentum posuere urna nec tincidunt praesent semper.
-            Pellentesque habitant morbi tristique senectus et netus. Nisl purus in mollis nunc sed
-            id semper risus in. Tellus molestie nunc non blandit massa enim nec dui nunc. In
-            pellentesque massa placerat duis ultricies. Purus viverra accumsan in nisl nisi
-            scelerisque eu ultrices. Neque egestas congue quisque egestas diam in arcu. Non tellus
-            orci ac auctor augue mauris augue neque gravida. Volutpat lacus laoreet non curabitur
-            gravida. Ut porttitor leo a diam sollicitudin tempor id. Ac feugiat sed lectus
-            vestibulum mattis ullamcorper velit.{" "}
+          <div className={styles.content}></div>
+          <div className={styles.rightSide}>
+            <PostButton props={user} />
           </div>
         </React.Fragment>
       )}
