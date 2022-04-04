@@ -23,6 +23,7 @@ model User {
   tokens           Token[]
   FavLocation      FavLocation[]
   loginAttempts    loginAttempts[]
+  UserLike         UserLike[]
 }
 
 model Session {
@@ -69,15 +70,16 @@ model DogProfile {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
-  uuid        String?  @unique @default(uuid())
+  id          Int        @id @default(autoincrement())
+  uuid        String?    @unique @default(uuid())
   created_by  Int
-  created_at  DateTime @default(now())
+  created_at  DateTime   @default(now())
   updated_by  Int?
   location    String?
-  is_disabled Boolean  @default(false)
+  is_disabled Boolean    @default(false)
   body        String
-  like_count  Int?     @default(0)
+  like_count  Int?       @default(0)
+  UserLike    UserLike[]
 }
 
 model Location {
@@ -122,4 +124,15 @@ model loginAttempts {
   created_at DateTime @default(now())
   user_id    Int
   user       User     @relation(fields: [user_id], references: [id])
+}
+
+model UserLike {
+  id         Int      @id @default(autoincrement())
+  uuid       String?  @unique @default(uuid())
+  created_by Int
+  created_at DateTime @default(now())
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  post_id    Int
+  post       Post     @relation(fields: [post_id], references: [id])
 }

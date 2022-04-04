@@ -4,10 +4,10 @@ import GoogleMapReact from "google-map-react"
 
 const store = createStore()
 
-store.setState("", "user_key")
+store.setState("user_key", "")
 
 const PostForm = ({ props, point }) => {
-  // const [userInput, setUserInput] = store.useState("user_key")
+  const [userInput, setUserInput] = store.useState("user_key")
   console.log("Point: ", point)
 
   const handleChange = (e) => {
@@ -20,17 +20,17 @@ const PostForm = ({ props, point }) => {
       <div>
         Create a Post
         <div style={{ height: "50vh", width: "50vw" }}>
-          <GoogleMapReact
+          {/* <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyDPvjz2zDJPV8idrYK1PeAIX9elkfGzgDk" }}
             defaultCenter={point}
             defaultZoom={11}
           >
             <AnyReactComponent text="My Marker" />
-          </GoogleMapReact>
+          </GoogleMapReact> */}
         </div>
-        {/* <form>
+        <form>
           <input value={userInput} type="text" onChange={(e) => handleChange(e)} />
-        </form> */}
+        </form>
       </div>
     </React.Fragment>
   )
