@@ -8,6 +8,7 @@ import ProfileInfo from "app/core/components/profieSide/showProfileInfo"
 import PostButton from "app/core/components/postButton"
 import InfiniteScroll from "react-infinite-scroll-component"
 import ScrollPost from "app/core/components/scrollPost"
+import Autocomplete from "react-google-autocomplete"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -39,6 +40,10 @@ const HomePage: BlitzPage = () => {
           </div>
           <div className={styles.rightSide}>
             <PostButton props={user} />
+            <Autocomplete
+              apiKey={"AIzaSyBZ7J4C-qvLiiMBw2sRB-NY1JjPAa4vdXA"}
+              onPlaceSelected={(place) => console.log(place)}
+            />
           </div>
         </React.Fragment>
       )}

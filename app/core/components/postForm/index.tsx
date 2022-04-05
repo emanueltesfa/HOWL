@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { createStore } from "state-pool"
 import GoogleMapReact from "google-map-react"
+import Autocomplete from "react-google-autocomplete"
 
 const store = createStore()
 
@@ -20,6 +21,11 @@ const PostForm = ({ props, point }) => {
       <div>
         Create a Post
         <div style={{ height: "50vh", width: "50vw" }}>
+          <Autocomplete
+            apiKey={"AIzaSyBZ7J4C-qvLiiMBw2sRB-NY1JjPAa4vdXA"}
+            onPlaceSelected={(place) => console.log(place)}
+          />
+
           {/* <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyDPvjz2zDJPV8idrYK1PeAIX9elkfGzgDk" }}
             defaultCenter={point}
@@ -28,9 +34,6 @@ const PostForm = ({ props, point }) => {
             <AnyReactComponent text="My Marker" />
           </GoogleMapReact> */}
         </div>
-        <form>
-          <input value={userInput} type="text" onChange={(e) => handleChange(e)} />
-        </form>
       </div>
     </React.Fragment>
   )
