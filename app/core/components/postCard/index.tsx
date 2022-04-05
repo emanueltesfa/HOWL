@@ -45,7 +45,7 @@ const PostCard = ({ props }) => {
     <React.Fragment>
       <div className={styles.keep}>
         <main className={styles.container}>
-          <header>
+          <header className={styles.cardHeader}>
             <GetUserName userId={props.created_by} />
           </header>
           <div>{props.body}</div>

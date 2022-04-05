@@ -35,7 +35,6 @@ const ScrollPost = () => {
         dataLength={posts.length}
         next={fetchMoreData}
         hasMore={true}
-        loader={<h4>Loading...</h4>}
         className={styles.container}
       >
         {posts.map((post: { post: typeof post }, index: number) => (
