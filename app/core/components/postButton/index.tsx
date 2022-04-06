@@ -1,10 +1,9 @@
 import { Modal } from "@mui/material"
 import getPosts from "app/posts/queries/getPosts"
 import getUser from "app/users/queries/getUser"
-import { Link, useQuery } from "blitz"
+import { Link, useQuery, useRouter } from "blitz"
 import React, { Suspense, useEffect, useState } from "react"
 import { createStore } from "state-pool"
-import PostForm from "../postForm"
 
 const store = createStore()
 
@@ -56,6 +55,7 @@ const ShowRecentUsers = () => {
 
 //Props will just be the current user
 const PostButton = ({ props }) => {
+  const router = useRouter()
   const [lat, setLat] = useState<number>(0)
   const [long, setLong] = useState<number>(0)
   const [point, setPoint] = useState<typeof center>()
@@ -85,19 +85,6 @@ const PostButton = ({ props }) => {
 
   return (
     <React.Fragment>
-      <Modal
-        open={showModal}
-        onClose={() => {
-          setShowModal(false)
-          setUpdateComp(true)
-        }}
-      >
-        <React.Fragment>
-          <div>
-            <PostForm props={props} point={point} />
-          </div>
-        </React.Fragment>
-      </Modal>
       <div>
         <Suspense fallback={"Lodaing..."}>
           <ShowRecentUsers />
@@ -105,7 +92,7 @@ const PostButton = ({ props }) => {
         <div>
           <button
             onClick={() => {
-              setShowModal(true)
+              router.push("/post/new")
             }}
           >
             Post

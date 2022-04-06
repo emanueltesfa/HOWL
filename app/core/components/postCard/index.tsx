@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react"
 import { GetUserName } from "../postButton"
 import { Post } from "prisma"
-import { useMutation, useQuery } from "blitz"
+import { Link, useMutation, useQuery } from "blitz"
 import UpdatePost from "../../../posts/mutations/updatePost"
 import getPost from "app/posts/queries/getPost"
 import getUserLikes from "app/user-likes/queries/getUserLikes"
@@ -45,10 +45,12 @@ const PostCard = ({ props }) => {
     <React.Fragment>
       <div className={styles.keep}>
         <main className={styles.container}>
-          <header className={styles.cardHeader}>
+          <header>
             <GetUserName userId={props.created_by} />
           </header>
+
           <div>{props.body}</div>
+
           <footer>
             <Suspense fallback={"Loading..."}>{userLikes.length}</Suspense>
 

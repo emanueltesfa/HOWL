@@ -92,6 +92,8 @@ model Location {
   pet_friendly  Boolean       @default(false)
   been_added    Boolean       @default(false)
   FavLocation   FavLocation[]
+
+  // @@fulltext([location_name])
 }
 
 model FavLocation {
