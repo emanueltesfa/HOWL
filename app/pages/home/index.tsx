@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react"
-import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
+import { Image, Link, BlitzPage, useMutation, Routes, useQuery, useRouter } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
@@ -9,8 +9,16 @@ import PostButton from "app/core/components/postButton"
 import InfiniteScroll from "react-infinite-scroll-component"
 import ScrollPost from "app/core/components/scrollPost"
 import Autocomplete from "react-google-autocomplete"
+import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
+import { Modal } from "@mui/material"
+import { createStore } from "state-pool"
+import PetForm from "app/core/components/petForm"
 
 const styles = require("app/pages/home/home.module.scss")
+
+const store = createStore()
+
+store.setState("CreateDog", false)
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -18,10 +26,38 @@ const styles = require("app/pages/home/home.module.scss")
  */
 const HomePage: BlitzPage = () => {
   const [userInput, setUserInput] = useState<string>("")
+  const [createDog, setCreateDog] = store.useState("CreateDog")
   const user = useCurrentUser()
+  const router = useRouter()
+
+  const [{ dogProfiles }, { setQueryData }] = useQuery(
+    getDogProfiles,
+    {
+      where: { user_id: user!.id },
+    },
+    { refetchInterval: false }
+  )
+
+  console.log("Number of Dog Profiles: ", dogProfiles)
+
+  if (dogProfiles.length == 0) {
+    setCreateDog(true)
+    //router.push(`/users/${user!.id}`)
+  }
 
   return (
     <div className={styles.container}>
+      <Modal
+        open={createDog}
+        onClose={() => {
+          setCreateDog(false)
+        }}
+      >
+        <React.Fragment>
+          <div>Created Dog Profile</div>
+          <PetForm user={user} />
+        </React.Fragment>
+      </Modal>
       {user != undefined && (
         <React.Fragment>
           <div className={styles.homeSide}>

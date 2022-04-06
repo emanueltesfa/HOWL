@@ -3,7 +3,9 @@ import db from "db"
 import { z } from "zod"
 
 const CreateLocation = z.object({
-  name: z.string(),
+  created_by: z.number(),
+  location: z.string(),
+  location_name: z.string(),
 })
 
 export default resolver.pipe(resolver.zod(CreateLocation), resolver.authorize(), async (input) => {
