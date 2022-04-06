@@ -7,7 +7,6 @@ const UpdateUser = z.object({
   name: z.string(),
   dob: z.string(),
   profile_pic_file: z.string(),
-  num_post: z.number(),
 })
 
 export default resolver.pipe(

@@ -25,14 +25,15 @@ export const SignupForm = (props: SignupFormProps) => {
         initialValues={{ email: "", password: "" }}
         onSubmit={async (values) => {
           try {
+            console.log("Values", values)
             const user = await signupMutation(values)
-            await userNameUpdate({
+            const updateUser = await userNameUpdate({
               id: user!.id,
               name: values.name,
               dob: "",
               profile_pic_file: "",
-              num_post: 0,
             })
+            console.log("UserName updated", updateUser)
             await createlogin({
               user_id: user.id,
               created_by: user.id,
@@ -43,6 +44,7 @@ export const SignupForm = (props: SignupFormProps) => {
               // This error comes from Prisma
               return { email: "This email is already being used" }
             } else {
+              console.log("Error being thrown")
               return { [FORM_ERROR]: error.toString() }
             }
           }
