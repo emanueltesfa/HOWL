@@ -10,6 +10,7 @@ import updateUserLike from "app/user-likes/mutations/updateUserLike"
 import createUserLike from "app/user-likes/mutations/createUserLike"
 import deleteUserLike from "app/user-likes/mutations/deleteUserLike"
 import { createStore } from "state-pool"
+import createDogProfile from "app/dog-profiles/mutations/createDogProfile"
 
 const store = createStore()
 
@@ -30,7 +31,7 @@ const PostCard = ({ props }) => {
   const [{ userLikes }, { refetch }] = useQuery(getUserLikes, { where: { post_id: post.id } })
   const [updateLikes] = useMutation(createUserLike)
   const [deleteLike] = useMutation(deleteUserLike)
-
+  const [createDog] = useMutation(createDogProfile)
   let unLike: boolean = false
 
   //console.log("Likes for this post:", userLikes)
