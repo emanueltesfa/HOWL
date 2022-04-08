@@ -41,3 +41,14 @@ export const ChangePassword = z.object({
   currentPassword: z.string(),
   newPassword: password,
 })
+
+export const PetProfile = z.object({
+  created_by: z.number(),
+  dog_profile_pic: z.string(),
+  pet_name: z.string(),
+  breed: z.string(),
+  age: z.number(),
+  sex: z.string(),
+  temperament: z.string(),
+  user_id: z.number(),
+})

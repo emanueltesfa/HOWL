@@ -54,7 +54,6 @@ const HomePage: BlitzPage = () => {
         }}
       >
         <React.Fragment>
-          <div>Created Dog Profile</div>
           <PetForm user={user} />
         </React.Fragment>
       </Modal>
