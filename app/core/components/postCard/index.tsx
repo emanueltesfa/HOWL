@@ -33,7 +33,12 @@ const PostCard = ({ props }) => {
   const [deleteLike] = useMutation(deleteUserLike)
   const [createDog] = useMutation(createDogProfile)
   let unLike: boolean = false
-
+  let likeText: string = "Like"
+  userLikes.forEach((like) => {
+    if (like.user_id == user!.id) {
+      likeText = "UnLike"
+    }
+  })
   //console.log("Likes for this post:", userLikes)
 
   const resetValues = () => {
@@ -111,7 +116,7 @@ const PostCard = ({ props }) => {
                 }
               }}
             >
-              Like
+              {likeText}
             </button>
           </footer>
         </main>

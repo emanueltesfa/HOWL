@@ -1,6 +1,7 @@
 import { PetProfile } from "app/auth/validations"
 import createDogProfile from "app/dog-profiles/mutations/createDogProfile"
-import { PromiseReturnType, useMutation, useRouter } from "blitz"
+import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
+import { PromiseReturnType, useMutation, useQuery, useRouter } from "blitz"
 import React, { useState } from "react"
 import CustomPetForm from "../CustomPetForm"
 import { Form } from "../Form"
@@ -17,6 +18,13 @@ const PetForm = ({ user }) => {
   const [createDog, { isLoading }] = useMutation(createDogProfile)
   const router = useRouter()
   const [state, setState] = useState<boolean>(false)
+  const [{ DogProfiles }, { refetch }] = useQuery(
+    getDogProfiles,
+    {
+      where: { user_id: user!.id },
+    },
+    { refetchInterval: false }
+  )
 
   return (
     <React.Fragment>
@@ -38,6 +46,7 @@ const PetForm = ({ user }) => {
             console.log(values)
             try {
               const res = await createDog(values)
+              await refetch()
               router.push("/home")
             } catch (error) {
               console.log(error.message)

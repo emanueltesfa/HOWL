@@ -13,6 +13,7 @@ import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
 import { Modal } from "@mui/material"
 import { createStore } from "state-pool"
 import PetForm from "app/core/components/petForm"
+import DogInfo from "app/core/components/dogInfo"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -38,25 +39,12 @@ const HomePage: BlitzPage = () => {
     { refetchInterval: false }
   )
 
-  console.log("Number of Dog Profiles: ", dogProfiles)
-
   if (dogProfiles.length == 0) {
-    setCreateDog(true)
-    //router.push(`/users/${user!.id}`)
+    router.push(`/users/${user!.id}/CreatePet`)
   }
 
   return (
     <div className={styles.container}>
-      <Modal
-        open={createDog}
-        onClose={() => {
-          setCreateDog(false)
-        }}
-      >
-        <React.Fragment>
-          <PetForm user={user} />
-        </React.Fragment>
-      </Modal>
       {user != undefined && (
         <React.Fragment>
           <div className={styles.homeSide}>
@@ -64,6 +52,7 @@ const HomePage: BlitzPage = () => {
             <div>
               <Suspense fallback={"Loading..."}>
                 <ProfileInfo user={user} />
+                <DogInfo owner={user} />
               </Suspense>
             </div>
             <div></div>

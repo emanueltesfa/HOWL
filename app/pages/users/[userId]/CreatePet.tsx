@@ -12,7 +12,7 @@ const CreatePet: BlitzPage = () => {
   const router = useRouter()
   const [{ dogProfiles }] = useQuery(getDogProfiles, { where: { user_id: user!.id } })
 
-  if (dogProfiles.length > 1) {
+  if (dogProfiles.length >= 1) {
     router.push("/home")
   }
   return (
