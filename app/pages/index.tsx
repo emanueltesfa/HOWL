@@ -5,6 +5,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import { Form } from "react-final-form"
+import SelectImage from "app/core/components/select_image/SelectImage"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -14,7 +15,7 @@ import { Form } from "react-final-form"
 export const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
+  console.log(process.env.CONNECTION_STRING)
   if (currentUser) {
     return (
       <>
@@ -63,7 +64,7 @@ const Home: BlitzPage = () => {
         <p>
           <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
         </p>
-
+        <SelectImage container_name={"profile1"} />
         <Link href={"/home"}>
           <button>Click here</button>
         </Link>
