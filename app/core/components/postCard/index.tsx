@@ -12,6 +12,8 @@ import deleteUserLike from "app/user-likes/mutations/deleteUserLike"
 import { createStore } from "state-pool"
 import createDogProfile from "app/dog-profiles/mutations/createDogProfile"
 import getDogProfile from "app/dog-profiles/queries/getDogProfile"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import FavoriteIcon from "@mui/icons-material/Favorite"
 
 const store = createStore()
 
@@ -53,22 +55,25 @@ const PostCard = ({ props }) => {
     <React.Fragment>
       <div className={styles.keep}>
         <main className={styles.container}>
-          <header>
-            <GetUserName userId={props.created_by} />{" "}
+          <header className={styles.headerContent}>
+            <div>
+              <GetUserName userId={props.created_by} /> <div>{dogProfile.pet_name}</div>
+            </div>
+
             <Link href={`https://www.google.com/maps?q=${props.location}`}>
               <a target="_blank" style={{ textDecoration: "none", color: "#5AC8CA" }}>
                 {props.location}
               </a>
             </Link>
-            <div>{dogProfile.pet_name}</div>
           </header>
 
-          <div>{props.body}</div>
+          <div className={styles.postBody}>{props.body}</div>
 
-          <footer>
+          <footer className={styles.footerContent}>
             <Suspense fallback={"Loading..."}>{userLikes.length}</Suspense>
 
             <button
+              className={styles.likeBtn}
               onClick={async () => {
                 //Wille search to see if the current user has liked the post
                 //If so then it will flag it and make sure to remove the like
@@ -124,7 +129,7 @@ const PostCard = ({ props }) => {
                 }
               }}
             >
-              {likeText}
+              {likeText == "Like" ? <FavoriteBorderIcon /> : <FavoriteIcon />}
             </button>
           </footer>
         </main>

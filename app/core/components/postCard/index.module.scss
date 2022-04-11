@@ -1,11 +1,12 @@
 .container {
   min-height: 15vh;
-  min-width: 50vw;
+  min-width: 48vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: transparent;
   margin-bottom: 1vh;
+  font-family: "Roboto", sans-serif;
 }
 
 .keep {
@@ -21,5 +22,28 @@
   margin-bottom: 1vh;
 }
 
-.cardHeader {
+.headerContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 7vh;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.likeBtn {
+  border: none;
+  background: transparent;
+  color: #5ac8ca;
+}
+
+.postBody {
+  width: 46vw;
+  margin-left: 1vw;
 }

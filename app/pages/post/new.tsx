@@ -44,7 +44,6 @@ const NewPost: BlitzPage = () => {
   const user = useCurrentUser()
   const router = useRouter()
   const [createAPost] = useMutation(createPost)
-  const badWords: string[] = ["fuck", "bitch", "ass"]
 
   ///////////////////////////////////
   const initValues: FormValues = {
