@@ -28,6 +28,7 @@
     "@emotion/styled": "11.8.1",
     "@mui/material": "5.5.3",
     "@prisma/client": "3.10.0",
+    "bad-words": "3.0.4",
     "blitz": "0.45.3",
     "dog-breeds": "1.0.0",
     "final-form": "4.20.6",

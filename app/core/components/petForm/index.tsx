@@ -10,6 +10,7 @@ import dogBreeds from "dog-breeds"
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import { createStore } from "state-pool"
+import { CheckBody } from "app/pages/post/new"
 
 const store = createStore()
 
@@ -95,7 +96,7 @@ const PetForm = ({ user }) => {
           {({ errors, touched, isValidating }) => (
             <React.Fragment>
               <Form>
-                <Field name="pet_name" placeholder="Pet Name" />
+                <Field name="pet_name" placeholder="Pet Name" validate={CheckBody} />
                 {errors.pet_name && touched.pet_name && <div>{errors.pet_name}</div>}
                 <Field name="breed" validate={checkSelect}>
                   {({ meta }) => (
@@ -123,10 +124,10 @@ const PetForm = ({ user }) => {
                 <Field type="number" name="age" placeholder="Age" />
                 {errors.age && touched.age && <div>{errors.age}</div>}
 
-                <Field name="sex" placeholder="Sex" />
+                <Field name="sex" placeholder="Sex" validate={CheckBody} />
                 {errors.sex && touched.sex && <div>{errors.sex}</div>}
 
-                <Field name="temperament" placeholder="Temperament" />
+                <Field name="temperament" placeholder="Temperament" validate={CheckBody} />
                 {errors.temperament && touched.temperament && <div>{errors.temperament}</div>}
 
                 <button type="submit">Submit</button>

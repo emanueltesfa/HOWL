@@ -10,6 +10,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { BlitzPage } from "next"
 import React, { useState } from "react"
 import * as Yup from "yup"
+import Filter from "bad-words"
+
+const filter = new Filter()
 
 interface FormValues {
   location: string
@@ -23,11 +26,26 @@ const FormSchema = Yup.object().shape({
   pet: Yup.string().required("Required!"),
 })
 
+export const CheckBody = (values) => {
+  let error
+  if (values) {
+    const cleaned: string = filter.clean(values)
+    const compare = Diff(values, cleaned)
+    if (compare.length != 0) {
+      error = "Restricted Word(s)"
+    }
+  }
+  return error
+}
+
+const Diff = (diffMe, diffBy) => diffMe.split(diffBy).join("")
+
 const NewPost: BlitzPage = () => {
   const user = useCurrentUser()
   const router = useRouter()
   const [createAPost] = useMutation(createPost)
-  // const [pet, setPet] = useState<DogProfile>()
+  const badWords: string[] = ["fuck", "bitch", "ass"]
+
   ///////////////////////////////////
   const initValues: FormValues = {
     location: "",
@@ -35,6 +53,7 @@ const NewPost: BlitzPage = () => {
     pet: "",
   }
   ////////////////////////////////////
+
   const [{ dogProfiles }] = useQuery(getDogProfiles, { where: { user_id: user!.id } })
 
   const checkSelect = (values) => {
@@ -48,7 +67,6 @@ const NewPost: BlitzPage = () => {
   return (
     <React.Fragment>
       <div>New Post</div>
-      {/* <PostForm props={user} /> */}
       <Formik
         initialValues={initValues}
         validationSchema={FormSchema}
@@ -81,7 +99,6 @@ const NewPost: BlitzPage = () => {
       >
         {({ errors, touched, isValidating }) => (
           <Form style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="location">Where are you taking</label>
             <Field as="select" id="pet" name="pet" validate={checkSelect}>
               <option value={" "} label={" "}>
                 {" "}
@@ -96,16 +113,15 @@ const NewPost: BlitzPage = () => {
             </Field>
             {errors.pet && touched.pet && <div>{errors.pet}</div>}
 
-            <Field id="location" name="location" placeholder="Location" validate={checkSelect} />
+            <Field id="location" name="location" placeholder="Location" validate={CheckBody} />
             {errors.location && touched.location && <div>{errors.location}</div>}
 
-            <label htmlFor="body">Body</label>
             <Field
               as="textarea"
               id="body"
               name="body"
               placeholder={`What are you doing?`}
-              validate={checkSelect}
+              validate={CheckBody}
             />
             {errors.body && touched.body && <div>{errors.body}</div>}
 
