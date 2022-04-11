@@ -55,8 +55,10 @@ const PostCard = ({ props }) => {
         <main className={styles.container}>
           <header>
             <GetUserName userId={props.created_by} />{" "}
-            <Link href={`https://google.com/search?q=${props.location}`}>
-              <a target="_blank">{props.location}</a>
+            <Link href={`https://www.google.com/maps?q=${props.location}`}>
+              <a target="_blank" style={{ textDecoration: "none", color: "#5AC8CA" }}>
+                {props.location}
+              </a>
             </Link>
             <div>{dogProfile.pet_name}</div>
           </header>

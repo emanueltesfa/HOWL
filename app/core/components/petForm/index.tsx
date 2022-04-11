@@ -127,7 +127,12 @@ const PetForm = ({ user }) => {
                 <Field name="sex" placeholder="Sex" validate={CheckBody} />
                 {errors.sex && touched.sex && <div>{errors.sex}</div>}
 
-                <Field name="temperament" placeholder="Temperament" validate={CheckBody} />
+                <Field
+                  name="temperament"
+                  as="textarea"
+                  placeholder="Temperament"
+                  validate={CheckBody}
+                />
                 {errors.temperament && touched.temperament && <div>{errors.temperament}</div>}
 
                 <button type="submit">Submit</button>
