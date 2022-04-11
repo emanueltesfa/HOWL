@@ -75,7 +75,6 @@ const NewPost: BlitzPage = () => {
           let pet_id: number = 0
           dogProfiles.forEach((pet) => {
             if (pet.pet_name == values.pet) {
-              // console.log("Pet Found")
               pet_id = pet.id
             }
           })
