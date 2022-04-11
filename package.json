@@ -29,6 +29,7 @@
     "@mui/material": "5.5.3",
     "@prisma/client": "3.10.0",
     "blitz": "0.45.3",
+    "dog-breeds": "1.0.0",
     "final-form": "4.20.6",
     "formik": "2.2.9",
     "google-map-react": "2.1.10",
@@ -41,6 +42,7 @@
     "sass": "1.49.9",
     "scss": "0.2.4",
     "state-pool": "0.7.1",
+    "yup": "0.32.11",
     "zod": "3.12.0"
   },
   "devDependencies": {

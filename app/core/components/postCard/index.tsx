@@ -11,6 +11,7 @@ import createUserLike from "app/user-likes/mutations/createUserLike"
 import deleteUserLike from "app/user-likes/mutations/deleteUserLike"
 import { createStore } from "state-pool"
 import createDogProfile from "app/dog-profiles/mutations/createDogProfile"
+import getDogProfile from "app/dog-profiles/queries/getDogProfile"
 
 const store = createStore()
 
@@ -32,6 +33,8 @@ const PostCard = ({ props }) => {
   const [updateLikes] = useMutation(createUserLike)
   const [deleteLike] = useMutation(deleteUserLike)
   const [createDog] = useMutation(createDogProfile)
+  const [dogProfile] = useQuery(getDogProfile, { id: props.dog_id })
+
   let unLike: boolean = false
   let likeText: string = "Like"
   userLikes.forEach((like) => {
@@ -39,7 +42,6 @@ const PostCard = ({ props }) => {
       likeText = "UnLike"
     }
   })
-  //console.log("Likes for this post:", userLikes)
 
   const resetValues = () => {
     unLike = false
@@ -52,7 +54,11 @@ const PostCard = ({ props }) => {
       <div className={styles.keep}>
         <main className={styles.container}>
           <header>
-            <GetUserName userId={props.created_by} />
+            <GetUserName userId={props.created_by} />{" "}
+            <Link href={`https://google.com/search?q=${props.location}`}>
+              <a target="_blank">{props.location}</a>
+            </Link>
+            <div>{dogProfile.pet_name}</div>
           </header>
 
           <div>{props.body}</div>

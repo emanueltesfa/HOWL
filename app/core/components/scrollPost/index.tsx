@@ -11,7 +11,7 @@ const styles = require("app/core/components/scrollPost/index.module.scss")
 const store = createStore()
 store.setState("page_key", 1)
 
-const ITEMS_PER_PAGE: number = 5
+const ITEMS_PER_PAGE: number = 2
 
 const ScrollPost = () => {
   const [page, setPage] = store.useState("page_key")
@@ -24,11 +24,13 @@ const ScrollPost = () => {
   })
 
   const fetchMoreData = () => {
-    console.log("Fetching")
+    //console.log("Fetching")
+    //console.log(posts.length)
     setPage(page + 1)
-    console.log("Page: ", page)
+    //console.log("Page: ", page)
   }
-
+  //Might need to change the infinite scroll in furture to see more button after x posts
+  //Will have to wait and see
   return (
     <React.Fragment>
       <InfiniteScroll

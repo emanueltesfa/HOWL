@@ -6,6 +6,8 @@ const CreatePost = z.object({
   body: z.string(),
   created_by: z.number(),
   is_disabled: z.boolean(),
+  location: z.string(),
+  dog_id: z.number(),
 })
 
 export default resolver.pipe(resolver.zod(CreatePost), resolver.authorize(), async (input) => {

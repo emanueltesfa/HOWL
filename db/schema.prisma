@@ -67,6 +67,7 @@ model DogProfile {
   temperament     String
   user_id         Int
   user            User     @relation(fields: [user_id], references: [id])
+  Post            Post[]
 }
 
 model Post {
@@ -79,6 +80,8 @@ model Post {
   is_disabled Boolean    @default(false)
   body        String
   like_count  Int?       @default(0)
+  dog_id      Int
+  dogProfile  DogProfile @relation(fields: [dog_id], references: [id])
   UserLike    UserLike[]
 }
 
