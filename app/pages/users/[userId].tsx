@@ -3,6 +3,7 @@ import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Rout
 import Layout from "app/core/layouts/Layout"
 import getUser from "app/users/queries/getUser"
 import deleteUser from "app/users/mutations/deleteUser"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 export const User = () => {
   const router = useRouter()
@@ -10,6 +11,9 @@ export const User = () => {
   const [deleteUserMutation] = useMutation(deleteUser)
   const [user] = useQuery(getUser, { id: userId })
 
+  const currentUser = useCurrentUser()
+  console.log(user.id)
+  console.log(currentUser)
   return (
     <>
       <Head>
@@ -19,6 +23,8 @@ export const User = () => {
       <div>
         <h1>User {user.id}</h1>
         <pre>{JSON.stringify(user, null, 2)}</pre>
+        <div>Hellofdsafjdsafjdsfa</div>
+        <div> </div>
 
         <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
@@ -61,3 +67,5 @@ ShowUserPage.authenticate = true
 ShowUserPage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default ShowUserPage
+
+//
