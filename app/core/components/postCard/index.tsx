@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react"
 import { GetUserName } from "../postButton"
 import { Post } from "prisma"
-import { Link, useMutation, useQuery } from "blitz"
+import { Link, useMutation, useQuery, useRouter } from "blitz"
 import UpdatePost from "../../../posts/mutations/updatePost"
 import getPost from "app/posts/queries/getPost"
 import getUserLikes from "app/user-likes/queries/getUserLikes"
@@ -26,6 +26,7 @@ const PostCard = ({ props }) => {
   //Have a query for the number of likes to give it a real time update with setQuerydata
   //console.log("Post Card:", props)
   const user = useCurrentUser()
+  const router = useRouter()
   const [currentPost, setCurrentPost] = useState<typeof Post>(props)
   const [unLikeFlag, setUnLikeFlag] = store.useState("unLikeFlag")
   const [unLikeId, setUnLikeId] = store.useState("unLikeId")
@@ -56,13 +57,22 @@ const PostCard = ({ props }) => {
       <div className={styles.keep}>
         <main className={styles.container}>
           <header className={styles.headerContent}>
-            <div>
-              <GetUserName userId={props.created_by} /> <div>{dogProfile.pet_name}</div>
+            <div className={styles.subHead}>
+              <Link href={`/users/${props.created_by}`}>
+                <a style={{ textDecoration: "none" }}>
+                  <strong>
+                    <GetUserName userId={props.created_by} />
+                  </strong>
+                </a>
+              </Link>
+              <strong style={{ display: "flex", flexDirection: "row" }}>
+                and <div>&nbsp;{dogProfile.pet_name}&nbsp;</div> are going to&nbsp;
+              </strong>
             </div>
 
             <Link href={`https://www.google.com/maps?q=${props.location}`}>
-              <a target="_blank" style={{ textDecoration: "none", color: "#5AC8CA" }}>
-                {props.location}
+              <a target="_blank" className={styles.locationLink}>
+                <strong>{props.location}</strong>
               </a>
             </Link>
           </header>

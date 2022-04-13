@@ -11,7 +11,7 @@ const styles = require("app/core/components/scrollPost/index.module.scss")
 const store = createStore()
 store.setState("page_key", 1)
 
-const ITEMS_PER_PAGE: number = 2
+const ITEMS_PER_PAGE: number = 10
 
 const ScrollPost = () => {
   const [page, setPage] = store.useState("page_key")
@@ -40,13 +40,13 @@ const ScrollPost = () => {
         loader={<React.Fragment></React.Fragment>}
         className={styles.container}
       >
-        {posts.map((post: { post: typeof post }, index: number) => (
-          <React.Fragment key={index}>
-            <Suspense fallback={"Loading..."}>
+        <Suspense fallback={"Loading..."}>
+          {posts.map((post: { post: typeof post }, index: number) => (
+            <React.Fragment key={index}>
               <PostCard props={post} />
-            </Suspense>
-          </React.Fragment>
-        ))}
+            </React.Fragment>
+          ))}
+        </Suspense>
       </InfiniteScroll>
     </React.Fragment>
   )

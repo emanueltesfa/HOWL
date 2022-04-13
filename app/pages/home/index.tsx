@@ -57,11 +57,13 @@ const HomePage: BlitzPage = () => {
             </div>
             <div></div>
           </div>
+          <div className={styles.verLine} />
           <div className={styles.content}>
             <Suspense fallback={"Loading..."}>
               <ScrollPost />
             </Suspense>
           </div>
+          <div className={styles.verLine} />
           <div className={styles.rightSide}>
             <PostButton props={user} />
           </div>

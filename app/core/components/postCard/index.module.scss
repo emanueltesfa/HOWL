@@ -25,8 +25,8 @@
 .headerContent {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: 7vh;
+  justify-content: flex-start;
+  height: 5vh;
 }
 
 .footerContent {
@@ -41,9 +41,26 @@
   border: none;
   background: transparent;
   color: #5ac8ca;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.locationLink {
+  color: #5ac8ca;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.locationLink:hover {
+  transform: translateX(1rem);
 }
 
 .postBody {
   width: 46vw;
   margin-left: 1vw;
+}
+
+.subHead {
+  display: flex;
+  flex-direction: row;
 }

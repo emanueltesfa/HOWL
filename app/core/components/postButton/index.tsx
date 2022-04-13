@@ -1,9 +1,13 @@
 import { Modal } from "@mui/material"
+import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
+import getDogProfileUserId from "app/dog-profiles/queries/getDogProfileUserId"
 import getPosts from "app/posts/queries/getPosts"
 import getUser from "app/users/queries/getUser"
-import { Link, useQuery, useRouter } from "blitz"
+import { Image, Link, useQuery, useRouter } from "blitz"
 import React, { Suspense, useEffect, useState } from "react"
 import { createStore } from "state-pool"
+
+const styles = require("app/core/components/postButton/index.module.scss")
 
 const store = createStore()
 
@@ -13,7 +17,39 @@ store.setState("updateComp", false)
 export const GetUserName = ({ userId }) => {
   const [user] = useQuery(getUser, { id: userId })
 
-  return <React.Fragment>{user.name}</React.Fragment>
+  return (
+    <React.Fragment>
+      <span style={{ color: "#5AC8CA" }} className={styles.userName}>
+        {user.name}&nbsp;
+      </span>
+    </React.Fragment>
+  )
+}
+
+export const GetAvatar = ({ userId }) => {
+  const [user] = useQuery(getUser, { id: userId })
+
+  return (
+    <React.Fragment>
+      {user.profile_pic_file === "" ? (
+        <Image
+          src={"/../public/defaultProfilePic/profileImg.png"}
+          alt={`${user.name} Profile Picture`}
+          height={30}
+          width={40}
+          className={styles.Image}
+        />
+      ) : (
+        <Image
+          src={user.profile_pic_file}
+          alt={`${user.name} Profile Picture`}
+          height={30}
+          width={40}
+          className={styles.Image}
+        />
+      )}
+    </React.Fragment>
+  )
 }
 
 const ShowRecentUsers = () => {
@@ -22,6 +58,7 @@ const ShowRecentUsers = () => {
     take: 3,
     orderBy: { created_at: "desc" },
   })
+
   const [updateComp, setUpdateComp] = store.useState("updateComp")
 
   //will updated once a user finishes a post
@@ -34,17 +71,16 @@ const ShowRecentUsers = () => {
   //will display the three most recent users that made a post
   return (
     <React.Fragment>
-      <div>
+      <div className={styles.threeUsers}>
         {posts.map((post, idx) => (
           <React.Fragment key={idx}>
             {post != undefined && (
-              <div>
-                <Link href={`/users/${post.created_by}`}>
-                  <div>
-                    <GetUserName userId={post.created_by} />
-                  </div>
-                </Link>
-              </div>
+              <Link href={`/users/${post.created_by}`}>
+                <div className={styles.userLink}>
+                  <GetAvatar userId={post.created_by} />
+                  <GetUserName userId={post.created_by} />
+                </div>
+              </Link>
             )}
           </React.Fragment>
         ))}
@@ -85,12 +121,13 @@ const PostButton = ({ props }) => {
 
   return (
     <React.Fragment>
-      <div>
+      <div className={styles.sideContainer}>
         <Suspense fallback={"Lodaing..."}>
           <ShowRecentUsers />
         </Suspense>
         <div>
           <button
+            className={styles.postBtn}
             onClick={() => {
               router.push("/post/new")
             }}

@@ -12,6 +12,8 @@ import React, { useState } from "react"
 import * as Yup from "yup"
 import Filter from "bad-words"
 
+const styles = require("app/pages/post/post.module.scss")
+
 const filter = new Filter()
 
 interface FormValues {
@@ -44,6 +46,7 @@ const NewPost: BlitzPage = () => {
   const user = useCurrentUser()
   const router = useRouter()
   const [createAPost] = useMutation(createPost)
+  const [body, setBody] = useState<string>("")
 
   ///////////////////////////////////
   const initValues: FormValues = {
@@ -65,68 +68,93 @@ const NewPost: BlitzPage = () => {
 
   return (
     <React.Fragment>
-      <div>New Post</div>
-      <Formik
-        initialValues={initValues}
-        validationSchema={FormSchema}
-        onSubmit={async (values, actions) => {
-          console.log({ values })
-          let pet_id: number = 0
-          dogProfiles.forEach((pet) => {
-            if (pet.pet_name == values.pet) {
-              pet_id = pet.id
-            }
-          })
-          try {
-            const res = await createAPost({
-              created_by: user!.id,
-              is_disabled: false,
-              dog_id: pet_id,
-              ...values,
+      <main>
+        <Formik
+          initialValues={initValues}
+          validationSchema={FormSchema}
+          onSubmit={async (values, actions) => {
+            console.log({ values })
+            let pet_id: number = 0
+            dogProfiles.forEach((pet) => {
+              if (pet.pet_name == values.pet) {
+                pet_id = pet.id
+              }
             })
-            if (res) {
-              alert(JSON.stringify(res, null, 2))
-              router.push("/home")
+            try {
+              const res = await createAPost({
+                created_by: user!.id,
+                is_disabled: false,
+                dog_id: pet_id,
+                ...values,
+              })
+              if (res) {
+                alert(JSON.stringify(res, null, 2))
+                router.push("/home")
+              }
+            } catch (error) {
+              console.log(error.message)
             }
-          } catch (error) {
-            console.log(error.message)
-          }
-          // alert(JSON.stringify(values, null, 2))
-          actions.setSubmitting(false)
-        }}
-      >
-        {({ errors, touched, isValidating }) => (
-          <Form style={{ display: "flex", flexDirection: "column" }}>
-            <Field as="select" id="pet" name="pet" validate={checkSelect}>
-              <option value={" "} label={" "}>
-                {" "}
-              </option>
-              {dogProfiles.map((pets, idx) => (
-                <React.Fragment key={idx}>
-                  <option value={pets.pet_name} label={pets.pet_name}>
-                    {pets.pet_name}
-                  </option>
-                </React.Fragment>
-              ))}
-            </Field>
-            {errors.pet && touched.pet && <div>{errors.pet}</div>}
+            // alert(JSON.stringify(values, null, 2))
+            actions.setSubmitting(false)
+          }}
+        >
+          {({ errors, touched, isValidating }) => (
+            <Form className={styles.formikContent}>
+              <header className={styles.formikHeader}></header>
+              <div className={styles.topForm}>
+                <div className={styles.dogSelect}>
+                  <strong>Who is coming along?</strong>
+                  <Field
+                    as="select"
+                    id="pet"
+                    name="pet"
+                    validate={checkSelect}
+                    className={styles.selectField}
+                  >
+                    <option value={" "} label={" "}>
+                      {" "}
+                    </option>
+                    {dogProfiles.map((pets, idx) => (
+                      <React.Fragment key={idx}>
+                        <option value={pets.pet_name} label={pets.pet_name}>
+                          {pets.pet_name}
+                        </option>
+                      </React.Fragment>
+                    ))}
+                  </Field>
+                  {errors.pet && touched.pet && <div>{errors.pet}</div>}
+                </div>
+                <div className={styles.dogSelect}>
+                  <strong>Where are you going?</strong>
+                  <Field
+                    id="location"
+                    name="location"
+                    placeholder="Location"
+                    validate={CheckBody}
+                  />
+                  {errors.location && touched.location && <div>{errors.location}</div>}
+                </div>
+              </div>
+              <div className={styles.underLine} />
+              <body className={styles.formikBody}>
+                {errors.body && touched.body && <div>{errors.body}</div>}
+                <Field
+                  as="textarea"
+                  id="body"
+                  name="body"
+                  placeholder={`What are you doing?`}
+                  validate={CheckBody}
+                  className={styles.bodyContent}
+                />
 
-            <Field id="location" name="location" placeholder="Location" validate={CheckBody} />
-            {errors.location && touched.location && <div>{errors.location}</div>}
-
-            <Field
-              as="textarea"
-              id="body"
-              name="body"
-              placeholder={`What are you doing?`}
-              validate={CheckBody}
-            />
-            {errors.body && touched.body && <div>{errors.body}</div>}
-
-            <button type="submit">Submit</button>
-          </Form>
-        )}
-      </Formik>
+                <button type="submit" className={styles.submitBtn}>
+                  Submit
+                </button>
+              </body>
+            </Form>
+          )}
+        </Formik>
+      </main>
     </React.Fragment>
   )
 }

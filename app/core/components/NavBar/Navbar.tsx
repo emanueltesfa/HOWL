@@ -16,17 +16,23 @@ const NavBar = () => {
         <header>
           <Link href={"/home"}>
             {/* Will link to home page */}
-            <div className={styles.tag}>HOWL</div>
+            <div className={styles.tag}>
+              <strong>HOWL</strong>
+            </div>
           </Link>
         </header>
         <main className={styles.mainContent}>
           <Link href={"/search"}>
             {/* Will link to search page */}
-            <div className={styles.tag}>Search</div>
+            <div className={styles.tag}>
+              <strong>Search</strong>
+            </div>
           </Link>
           <Link href={`/users/${user!.id}`}>
             {/* Will link to users/id page */}
-            <div className={styles.tag}>Profile</div>
+            <div className={styles.tag}>
+              <strong>Profile</strong>
+            </div>
           </Link>
         </main>
 
@@ -39,7 +45,7 @@ const NavBar = () => {
                 router.push("/")
               }}
             >
-              Logout
+              <strong>Logout</strong>
             </div>
           </Link>
         </footer>
