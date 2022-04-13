@@ -12,6 +12,7 @@
   flex-direction: column;
   height: 7vh;
   justify-content: space-between;
+  align-items: center;
 }
 
 .topForm {
@@ -73,8 +74,12 @@
 }
 
 .selectField {
+  margin-top: 1rem;
   background: transparent;
-  outline: none;
+  outline: 1px solid #5ac8ca;
+  border-radius: 6px;
   color: white;
+  padding: 0.25rem;
   border: none;
+  width: 13vw;
 }

@@ -123,8 +123,24 @@ const PetForm = ({ user }) => {
                 <Field type="number" name="age" placeholder="Age" />
                 {errors.age && touched.age && <div>{errors.age}</div>}
 
-                <Field name="sex" placeholder="Sex" validate={CheckBody} />
-                {errors.sex && touched.sex && <div>{errors.sex}</div>}
+                <Field name="sex" validate={checkSelect}>
+                  {({ meta }) => (
+                    <div>
+                      <Field as="select" name="breed">
+                        <option value={" "} label={" "}>
+                          {" "}
+                        </option>
+                        <option value={"Male"} label={"Male"}>
+                          {"Male"}
+                        </option>
+                        <option value={"Female"} label={"Female"}>
+                          {"Female"}
+                        </option>
+                      </Field>
+                      {meta.touched && meta.error && <div>{meta.error}</div>}
+                    </div>
+                  )}
+                </Field>
 
                 <Field
                   name="temperament"

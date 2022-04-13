@@ -122,7 +122,9 @@ const NewPost: BlitzPage = () => {
                       </React.Fragment>
                     ))}
                   </Field>
-                  {errors.pet && touched.pet && <div>{errors.pet}</div>}
+                  {errors.pet && touched.pet && (
+                    <div className={styles.errorMessage}>{errors.pet}</div>
+                  )}
                 </div>
                 <div className={styles.dogSelect}>
                   <strong>Where are you going?</strong>
@@ -131,6 +133,7 @@ const NewPost: BlitzPage = () => {
                     name="location"
                     placeholder="Location"
                     validate={CheckBody}
+                    className={styles.selectField}
                   />
                   {errors.location && touched.location && <div>{errors.location}</div>}
                 </div>
