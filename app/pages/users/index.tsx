@@ -20,13 +20,13 @@ export const UsersList = () => {
   return (
     <div>
       <ul>
-        {users.map((user) => (
+        {/* {users.map((user) => (
           <li key={user.id}>
             <Link href={Routes.ShowUserPage({ userId: user.id })}>
               <a>{user.name}</a>
             </Link>
           </li>
-        ))}
+        ))} */}
       </ul>
 
       <button disabled={page === 0} onClick={goToPreviousPage}>
@@ -48,9 +48,9 @@ const UsersPage: BlitzPage = () => {
 
       <div>
         <p>
-          <Link href={Routes.NewUserPage()}>
+          {/* <Link href={Routes.NewUserPage()}>
             <a>Create User</a>
-          </Link>
+          </Link> */}
         </p>
 
         <Suspense fallback={<div>Loading...</div>}>

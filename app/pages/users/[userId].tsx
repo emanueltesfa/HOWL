@@ -26,11 +26,11 @@ export const User = () => {
         <div>Hellofdsafjdsafjdsfa</div>
         <div> </div>
 
-        <Link href={Routes.EditUserPage({ userId: user.id })}>
+        {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
-        </Link>
+        </Link> */}
 
-        <button
+        {/* <button
           type="button"
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
@@ -41,7 +41,7 @@ export const User = () => {
           style={{ marginLeft: "0.5rem" }}
         >
           Delete
-        </button>
+        </button> */}
       </div>
     </>
   )
@@ -50,11 +50,11 @@ export const User = () => {
 const ShowUserPage: BlitzPage = () => {
   return (
     <div>
-      <p>
+      {/* <p>
         <Link href={Routes.UsersPage()}>
           <a>Users</a>
         </Link>
-      </p>
+      </p> */}
 
       <Suspense fallback={<div>Loading...</div>}>
         <User />

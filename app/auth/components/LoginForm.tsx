@@ -4,6 +4,8 @@ import { Form, FORM_ERROR } from "app/core/components/Form"
 import login from "app/auth/mutations/login"
 import { Login } from "app/auth/validations"
 
+const styles = require("app/styles/global.module.scss")
+
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
 }
@@ -12,7 +14,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
 
   return (
-    <div>
+    <div className={styles.loginFormBack}>
       <h1>Login</h1>
 
       <Form
@@ -35,17 +37,24 @@ export const LoginForm = (props: LoginFormProps) => {
           }
         }}
       >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        <LabeledTextField name="email" label="Email" className={styles.loginField} />
+        <LabeledTextField
+          name="password"
+          label="Password"
+          type="password"
+          className={styles.loginField}
+        />
         <div>
           <Link href={Routes.ForgotPasswordPage()}>
-            <a>Forgot your password?</a>
+            <a className={styles.passwordLink}>Forgot your password?</a>
           </Link>
         </div>
       </Form>
 
-      <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
+      <div className={styles.passwordLink}>
+        <Link href={Routes.SignupPage()}>
+          <button className={styles.passwordLinkBtn}>Sign Up</button>
+        </Link>
       </div>
     </div>
   )

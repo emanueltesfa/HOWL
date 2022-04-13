@@ -1,0 +1,27 @@
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #324b4b;
+  min-height: calc(100vh) !important;
+  margin-top: 5vh;
+  height: 100%;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.layoutContent {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  height: 94vh;
+  margin-top: 1vh;
+  width: 100vw;
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
+.layoutContent::-webkit-scrollbar {
+  display: none;
+}
