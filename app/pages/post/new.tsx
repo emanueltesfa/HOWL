@@ -30,6 +30,7 @@ const FormSchema = Yup.object().shape({
 
 export const CheckBody = (values) => {
   let error
+
   if (values) {
     const cleaned: string = filter.clean(values)
     const compare = Diff(values, cleaned)
@@ -135,7 +136,9 @@ const NewPost: BlitzPage = () => {
                     validate={CheckBody}
                     className={styles.selectField}
                   />
-                  {errors.location && touched.location && <div>{errors.location}</div>}
+                  {errors.location && touched.location && (
+                    <div className={styles.errorMessage}>{errors.location}</div>
+                  )}
                 </div>
               </div>
               <div className={styles.underLine} />

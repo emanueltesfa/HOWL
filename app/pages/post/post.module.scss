@@ -34,7 +34,7 @@
 
 .bodyContent {
   width: 30vw;
-  height: 20vh;
+  min-height: 20vh;
   background: rgba(0, 0, 0, 0.3);
   padding: 1rem;
   border-radius: 12px;
@@ -82,4 +82,8 @@
   padding: 0.25rem;
   border: none;
   width: 13vw;
+}
+
+.errorMessage {
+  margin-top: 0.5rem;
 }
