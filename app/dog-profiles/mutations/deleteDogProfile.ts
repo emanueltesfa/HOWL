@@ -2,20 +2,17 @@ import { resolver } from "blitz"
 import db from "db"
 import { z } from "zod"
 
-const UpdateUser = z.object({
+const DeleteDogProfile = z.object({
   id: z.number(),
-  name: z.string(),
-  dob: z.string(),
-  profile_pic_file: z.string(),
 })
 
 export default resolver.pipe(
-  resolver.zod(UpdateUser),
+  resolver.zod(DeleteDogProfile),
   resolver.authorize(),
-  async ({ id, ...data }) => {
+  async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const user = await db.user.update({ where: { id }, data })
+    const dogProfile = await db.dogProfile.deleteMany({ where: { id } })
 
-    return user
+    return dogProfile
   }
 )
