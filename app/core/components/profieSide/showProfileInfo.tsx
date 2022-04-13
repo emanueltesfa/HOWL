@@ -11,6 +11,8 @@ const ProfileInfo = ({ user }) => {
   return (
     <React.Fragment>
       <div>{id}</div>
+
+      <div></div>
     </React.Fragment>
   )
 }
