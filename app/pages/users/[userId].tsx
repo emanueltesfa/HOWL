@@ -25,6 +25,7 @@ export const User = () => {
   // Check if user is the same user that is logged in or visitor
   // {flag ? <MYprofile /> :<otherprofile />}
   // Potential Merge Conflict with getDogProfileUserId.ts
+  //
   return (
     <>
       <div>
