@@ -96,12 +96,19 @@ const PetForm = ({ user }) => {
             <React.Fragment>
               <h1 className={styles.formHeader}>Tells us about your dog!</h1>
               <Form className={styles.formContent}>
-                <Field name="pet_name" placeholder="Pet Name" validate={CheckBody} />
-                {errors.pet_name && touched.pet_name && <div>{errors.pet_name}</div>}
+                <label>
+                  <Field
+                    name="pet_name"
+                    placeholder="Pet Name"
+                    validate={CheckBody}
+                    className={styles.inputField}
+                  />
+                  {errors.pet_name && touched.pet_name && <div>{errors.pet_name}</div>}
+                </label>
                 <Field name="breed" validate={checkSelect}>
                   {({ meta }) => (
                     <div>
-                      <Field as="select" name="breed">
+                      <Field as="select" name="breed" className={styles.inputField}>
                         <option value={" "} label={" "}>
                           {" "}
                         </option>
@@ -121,13 +128,13 @@ const PetForm = ({ user }) => {
                   )}
                 </Field>
 
-                <Field type="number" name="age" placeholder="Age" />
+                <Field type="number" name="age" placeholder="Age" className={styles.inputField} />
                 {errors.age && touched.age && <div>{errors.age}</div>}
 
                 <Field name="sex" validate={checkSelect}>
                   {({ meta }) => (
                     <div>
-                      <Field as="select" name="sex">
+                      <Field as="select" name="sex" className={styles.inputField}>
                         <option value={" "} label={" "}>
                           {" "}
                         </option>
@@ -148,6 +155,7 @@ const PetForm = ({ user }) => {
                   as="textarea"
                   placeholder="Temperament"
                   validate={CheckBody}
+                  className={styles.inputField}
                 />
                 {errors.temperament && touched.temperament && <div>{errors.temperament}</div>}
 

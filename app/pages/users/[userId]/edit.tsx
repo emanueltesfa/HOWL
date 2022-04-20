@@ -131,7 +131,7 @@ export const EditUser = () => {
           >
             {({ errors, touched, isValidating, isSubmitting }) => (
               <Form className={styles.formUser}>
-                <h1>Edit {userName}</h1>
+                <h1>Edit Your Profile</h1>
                 <GetAvatar userId={user.id} />
                 <div>
                   <label>
@@ -165,6 +165,7 @@ export const EditUser = () => {
                       disabled={timeoutFlag}
                       className={styles.inputFieldFile}
                     />
+                    {errors.profile_pic && touched.profile_pic && <div>{errors.profile_pic}</div>}
                   </label>
                   <label className={styles.labelContainer}>
                     Birthday
@@ -174,6 +175,7 @@ export const EditUser = () => {
                       disabled={timeoutFlag}
                       className={styles.inputField}
                     />
+                    {errors.dob && touched.dob && <div>{errors.dob}</div>}
                   </label>
                 </div>
 
@@ -256,7 +258,7 @@ const UpdatePet = ({ user }) => {
           {({ errors, touched, isValidating }) => (
             <React.Fragment>
               <Form className={styles.formDog}>
-                <h1>Edit User {dogProfile.pet_name}</h1>
+                <h1>Edit {dogProfile.pet_name}&apos;s Profile</h1>
                 <GetDogAvatar userId={user.id} />
                 <div>
                   <label>

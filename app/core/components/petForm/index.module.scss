@@ -49,3 +49,13 @@
 .formHeader {
   min-width: 30vw;
 }
+
+.inputField {
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.1rem;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
