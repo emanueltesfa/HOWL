@@ -260,7 +260,7 @@ const UpdatePet = ({ user }) => {
                 <GetDogAvatar userId={user.id} />
                 <div>
                   <label>
-                    Dog's Name
+                    Dog&apos;s Name
                     <Field
                       name="pet_name"
                       placeholder="Pet Name"
