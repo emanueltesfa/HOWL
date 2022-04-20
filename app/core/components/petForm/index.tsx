@@ -127,7 +127,7 @@ const PetForm = ({ user }) => {
                 <Field name="sex" validate={checkSelect}>
                   {({ meta }) => (
                     <div>
-                      <Field as="select" name="breed">
+                      <Field as="select" name="sex">
                         <option value={" "} label={" "}>
                           {" "}
                         </option>
