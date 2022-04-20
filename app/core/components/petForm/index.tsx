@@ -94,7 +94,8 @@ const PetForm = ({ user }) => {
         >
           {({ errors, touched, isValidating }) => (
             <React.Fragment>
-              <Form>
+              <h1 className={styles.formHeader}>Tells us about your dog!</h1>
+              <Form className={styles.formContent}>
                 <Field name="pet_name" placeholder="Pet Name" validate={CheckBody} />
                 {errors.pet_name && touched.pet_name && <div>{errors.pet_name}</div>}
                 <Field name="breed" validate={checkSelect}>

@@ -5,6 +5,8 @@ import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
 import updateUser from "app/users/mutations/updateUser"
 import createLoginAttempt from "app/login-attempts/mutations/createLoginAttempt"
+import styles from "../../styles/global.module.scss"
+import React from "react"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -16,7 +18,7 @@ export const SignupForm = (props: SignupFormProps) => {
   const [createlogin] = useMutation(createLoginAttempt)
 
   return (
-    <div>
+    <React.Fragment>
       <h1>Create an Account</h1>
 
       <Form
@@ -54,7 +56,7 @@ export const SignupForm = (props: SignupFormProps) => {
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
         <LabeledTextField name="name" label="Name" placeholder="User Name" />
       </Form>
-    </div>
+    </React.Fragment>
   )
 }
 
