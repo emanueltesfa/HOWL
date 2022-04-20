@@ -48,7 +48,6 @@ const HomePage: BlitzPage = () => {
       {user != undefined && (
         <React.Fragment>
           <div className={styles.homeSide}>
-            <div>Profile Pic</div>
             <div>
               <Suspense fallback={"Loading..."}>
                 <ProfileInfo user={user} />
