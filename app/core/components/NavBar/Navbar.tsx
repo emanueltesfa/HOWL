@@ -22,12 +22,12 @@ const NavBar = () => {
           </Link>
         </header>
         <main className={styles.mainContent}>
-          <Link href={"/search"}>
-            {/* Will link to search page */}
+          {/* <Link href={"/search"}>
+            {/* Will link to search page
             <div className={styles.tag}>
               <strong>Search</strong>
             </div>
-          </Link>
+          </Link> */}
           <Link href={`/users/${user!.id}`}>
             {/* Will link to users/id page */}
             <div className={styles.tag}>

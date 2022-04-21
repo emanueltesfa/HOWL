@@ -58,7 +58,7 @@ const DogFormSchema = Yup.object().shape({
 })
 
 const FormSchema = Yup.object().shape({
-  name: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required!"),
+  name: Yup.string().min(3, "Too Short!").max(25, "Too Long!").required("Required!"),
   profile_pic: Yup.string(),
   dob: Yup.string().required("Required!"),
 })
@@ -165,6 +165,7 @@ export const EditUser = () => {
                       disabled={timeoutFlag}
                       className={styles.inputFieldFile}
                     />
+                    {errors.profile_pic && touched.profile_pic && <div>{errors.profile_pic}</div>}
                   </label>
                   <label className={styles.labelContainer}>
                     Birthday
@@ -174,6 +175,7 @@ export const EditUser = () => {
                       disabled={timeoutFlag}
                       className={styles.inputField}
                     />
+                    {errors.dob && touched.dob && <div>{errors.dob}</div>}
                   </label>
                 </div>
 
@@ -256,7 +258,7 @@ const UpdatePet = ({ user }) => {
           {({ errors, touched, isValidating }) => (
             <React.Fragment>
               <Form className={styles.formDog}>
-                <h1>Edit User {dogProfile.pet_name}</h1>
+                <h1>Edit {dogProfile.pet_name}&apos;s Profile</h1>
                 <GetDogAvatar userId={user.id} />
                 <div>
                   <label>
