@@ -47,16 +47,16 @@ const ScrollPost = () => {
               <PostCard props={post} />
             </React.Fragment>
           ))}
-          <div>
-            <button
-              disabled={!hasMore}
-              onClick={fetchMoreData}
-              className={hasMore ? styles.moreBtn : styles.disabledBtn}
-            >
-              {hasMore ? <label>See More...</label> : <label>No More Posts...</label>}
-            </button>
-          </div>
         </Suspense>
+        <div>
+          <button
+            disabled={!hasMore}
+            onClick={fetchMoreData}
+            className={hasMore ? styles.moreBtn : styles.disabledBtn}
+          >
+            {hasMore ? <label>See More...</label> : <label>No More Posts...</label>}
+          </button>
+        </div>
       </InfiniteScroll>
     </React.Fragment>
   )

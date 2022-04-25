@@ -132,7 +132,7 @@ export const EditUser = () => {
             {({ errors, touched, isValidating, isSubmitting }) => (
               <Form className={styles.formUser}>
                 <h1>Edit {userName}</h1>
-                <GetAvatar userId={user.id} />
+                <GetAvatar userId={user.id} height={100} width={140} />
                 <div>
                   <label>
                     User Name
@@ -157,7 +157,7 @@ export const EditUser = () => {
                       )}
                     </Field>
                   </label>
-                  <label className={styles.labelContainer}>
+                  {/* <label className={styles.labelContainer}>
                     Profile Picture
                     <Field
                       type="file"
@@ -166,7 +166,7 @@ export const EditUser = () => {
                       className={styles.inputFieldFile}
                     />
                     {errors.profile_pic && touched.profile_pic && <div>{errors.profile_pic}</div>}
-                  </label>
+                  </label> */}
                   <label className={styles.labelContainer}>
                     Birthday
                     <Field
@@ -259,7 +259,7 @@ const UpdatePet = ({ user }) => {
             <React.Fragment>
               <Form className={styles.formDog}>
                 <h1>Edit {dogProfile.pet_name}&apos;s Profile</h1>
-                <GetDogAvatar userId={user.id} />
+                <GetDogAvatar userId={user.id} width={140} height={100} />
                 <div>
                   <label>
                     Dog&apos;s Name
@@ -364,7 +364,15 @@ const UpdatePet = ({ user }) => {
   )
 }
 
-const GetAvatar = ({ userId }: { userId: number }) => {
+export const GetAvatar = ({
+  userId,
+  height,
+  width,
+}: {
+  userId: number
+  height: number
+  width: number
+}) => {
   const [user] = useQuery(getUser, { id: userId })
 
   return (
@@ -373,16 +381,16 @@ const GetAvatar = ({ userId }: { userId: number }) => {
         <Image
           src={"/../public/defaultProfilePic/profileImg.png"}
           alt={`${user.name} Profile Picture`}
-          height={100}
-          width={140}
+          height={height}
+          width={width}
           className={styles.Image}
         />
       ) : (
         <Image
           src={user.profile_pic_file}
           alt={`${user.name} Profile Picture`}
-          height={100}
-          width={140}
+          height={height}
+          width={width}
           className={styles.Image}
         />
       )}
@@ -390,7 +398,7 @@ const GetAvatar = ({ userId }: { userId: number }) => {
   )
 }
 
-const GetDogAvatar = ({ userId }) => {
+export const GetDogAvatar = ({ userId, width, height }) => {
   const [dogProfile] = useQuery(getDogProfileUserId, { user_id: userId })
 
   return (
@@ -399,16 +407,16 @@ const GetDogAvatar = ({ userId }) => {
         <Image
           src={"/../public/defaultProfilePic/default_dog.jpg"}
           alt={`${dogProfile.pet_name} Profile Picture`}
-          height={100}
-          width={140}
+          height={height}
+          width={width}
           className={styles.Image}
         />
       ) : (
         <Image
           src={dogProfile.dog_profile_pic}
           alt={`${dogProfile.pet_name} Profile Picture`}
-          height={100}
-          width={140}
+          height={height}
+          width={width}
           className={styles.Image}
         />
       )}

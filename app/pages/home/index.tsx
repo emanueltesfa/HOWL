@@ -30,11 +30,16 @@ const HomePage: BlitzPage = () => {
   const [createDog, setCreateDog] = store.useState("CreateDog")
   const user = useCurrentUser()
   const router = useRouter()
+  console.log("User: ", user)
+
+  if (user === null) {
+    router.push("/")
+  }
 
   const [{ dogProfiles }, { setQueryData }] = useQuery(
     getDogProfiles,
     {
-      where: { user_id: user!.id },
+      where: { user_id: user?.id },
     },
     { refetchInterval: false }
   )
