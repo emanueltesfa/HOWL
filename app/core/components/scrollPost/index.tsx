@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE: number = 10
 const ScrollPost = () => {
   const [page, setPage] = store.useState("page_key")
 
-  let [{ posts }, { setQueryData }] = usePaginatedQuery(getPosts, {
+  let [{ posts, hasMore }, { setQueryData }] = usePaginatedQuery(getPosts, {
     where: { is_disabled: false },
     orderBy: { created_at: "desc" },
     skip: 0,
@@ -29,14 +29,15 @@ const ScrollPost = () => {
     setPage(page + 1)
     //console.log("Page: ", page)
   }
+
   //Might need to change the infinite scroll in furture to see more button after x posts
   //Will have to wait and see
   return (
     <React.Fragment>
       <InfiniteScroll
         dataLength={posts.length}
-        next={fetchMoreData}
-        hasMore={true}
+        next={() => {}}
+        hasMore={false}
         loader={<React.Fragment></React.Fragment>}
         className={styles.container}
       >
@@ -47,6 +48,15 @@ const ScrollPost = () => {
             </React.Fragment>
           ))}
         </Suspense>
+        <div>
+          <button
+            disabled={!hasMore}
+            onClick={fetchMoreData}
+            className={hasMore ? styles.moreBtn : styles.disabledBtn}
+          >
+            {hasMore ? <label>See More...</label> : <label>No More Posts...</label>}
+          </button>
+        </div>
       </InfiniteScroll>
     </React.Fragment>
   )

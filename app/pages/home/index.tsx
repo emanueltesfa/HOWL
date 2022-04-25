@@ -14,27 +14,53 @@ import { Modal } from "@mui/material"
 import { createStore } from "state-pool"
 import PetForm from "app/core/components/petForm"
 import DogInfo from "app/core/components/dogInfo"
+import getPostSearch from "app/posts/queries/getPostSearch"
 
 const styles = require("app/pages/home/home.module.scss")
 
 const store = createStore()
 
 store.setState("CreateDog", false)
+store.setState("userInput", "")
+store.setState("flag", false)
+
+const SearchPost = (search_text) => {
+  const [posts] = useQuery(
+    getPostSearch,
+    {
+      search_text: search_text,
+      take: 50,
+    },
+    {
+      // This ensures the query never refreshes and overwrites
+      // the form data while the user is editing.
+      staleTime: Infinity,
+    }
+  )
+
+  return posts
+}
 
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
  */
 const HomePage: BlitzPage = () => {
-  const [userInput, setUserInput] = useState<string>("")
+  const [userInput, setUserInput] = store.useState("userInput")
   const [createDog, setCreateDog] = store.useState("CreateDog")
   const user = useCurrentUser()
   const router = useRouter()
+  const [flag, setFlag] = store.useState("flag")
+  console.log("User: ", user)
+
+  if (user === null) {
+    router.push("/")
+  }
 
   const [{ dogProfiles }, { setQueryData }] = useQuery(
     getDogProfiles,
     {
-      where: { user_id: user!.id },
+      where: { user_id: user?.id },
     },
     { refetchInterval: false }
   )
@@ -64,11 +90,38 @@ const HomePage: BlitzPage = () => {
           </div>
           <div className={styles.verLine} />
           <div className={styles.rightSide}>
+            <TestComp />
             <PostButton props={user} />
           </div>
         </React.Fragment>
       )}
     </div>
+  )
+}
+
+const TestComp = () => {
+  const [userInput, setUserInput] = store.useState("userInput")
+  const [flag, setFlag] = store.useState("flag")
+
+  const updateSearch = (event) => {
+    setUserInput(event.target.value)
+    console.log(SearchPost(event.target.value))
+  }
+
+  return (
+    <React.Fragment>
+      <div>
+        <input value={userInput} onChange={(e) => updateSearch(e)} placeholder="Search" />
+        <div>
+          <button onClick={() => setFlag(!flag)}>
+            {flag != true ? <strong>Post</strong> : <label>Post</label>}
+          </button>
+          <button onClick={() => setFlag(!flag)}>
+            {flag == true ? <strong>User</strong> : <label>User</label>}
+          </button>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 

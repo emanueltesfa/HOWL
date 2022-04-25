@@ -14,7 +14,6 @@ const ProfileInfo = ({ user }) => {
       <div>{id}</div>
       <div className="d-flex p-2 flex-column">
         <div>{user.name}</div>
-        <div>fjkldsjafsl</div>
       </div>
       <div></div>
     </React.Fragment>

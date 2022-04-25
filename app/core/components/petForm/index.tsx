@@ -96,7 +96,7 @@ const PetForm = ({ user }) => {
             <React.Fragment>
               <h1 className={styles.formHeader}>Tells us about your dog!</h1>
               <Form className={styles.formContent}>
-                <label>
+                <div>
                   <Field
                     name="pet_name"
                     placeholder="Pet Name"
@@ -104,62 +104,63 @@ const PetForm = ({ user }) => {
                     className={styles.inputField}
                   />
                   {errors.pet_name && touched.pet_name && <div>{errors.pet_name}</div>}
-                </label>
-                <Field name="breed" validate={checkSelect}>
-                  {({ meta }) => (
-                    <div>
-                      <Field as="select" name="breed" className={styles.inputField}>
-                        <option value={" "} label={" "}>
-                          {" "}
-                        </option>
-                        <option value={"Mutt"} label={"Mutt"}>
-                          {"Mutt"}
-                        </option>
-                        {dogBreeds.all.map((dog, idx) => (
-                          <React.Fragment key={idx}>
-                            <option value={dog.name} label={dog.name}>
-                              {dog.name}
-                            </option>
-                          </React.Fragment>
-                        ))}
-                      </Field>
-                      {meta.touched && meta.error && <div>{meta.error}</div>}
-                    </div>
-                  )}
-                </Field>
+                  <Field name="breed" validate={checkSelect}>
+                    {({ meta }) => (
+                      <div>
+                        <Field as="select" name="breed" className={styles.inputField}>
+                          <option value={" "} label={" "}>
+                            {" "}
+                          </option>
+                          <option value={"Mutt"} label={"Mutt"}>
+                            {"Mutt"}
+                          </option>
+                          {dogBreeds.all.map((dog, idx) => (
+                            <React.Fragment key={idx}>
+                              <option value={dog.name} label={dog.name}>
+                                {dog.name}
+                              </option>
+                            </React.Fragment>
+                          ))}
+                        </Field>
+                        {meta.touched && meta.error && <div>{meta.error}</div>}
+                      </div>
+                    )}
+                  </Field>
 
-                <Field type="number" name="age" placeholder="Age" className={styles.inputField} />
-                {errors.age && touched.age && <div>{errors.age}</div>}
+                  <Field type="number" name="age" placeholder="Age" className={styles.inputField} />
+                  {errors.age && touched.age && <div>{errors.age}</div>}
 
-                <Field name="sex" validate={checkSelect}>
-                  {({ meta }) => (
-                    <div>
-                      <Field as="select" name="sex" className={styles.inputField}>
-                        <option value={" "} label={" "}>
-                          {" "}
-                        </option>
-                        <option value={"Male"} label={"Male"}>
-                          {"Male"}
-                        </option>
-                        <option value={"Female"} label={"Female"}>
-                          {"Female"}
-                        </option>
-                      </Field>
-                      {meta.touched && meta.error && <div>{meta.error}</div>}
-                    </div>
-                  )}
-                </Field>
+                  <Field name="sex" validate={checkSelect}>
+                    {({ meta }) => (
+                      <div>
+                        <Field as="select" name="sex" className={styles.inputField}>
+                          <option value={" "} label={" "}>
+                            {" "}
+                          </option>
+                          <option value={"Male"} label={"Male"}>
+                            {"Male"}
+                          </option>
+                          <option value={"Female"} label={"Female"}>
+                            {"Female"}
+                          </option>
+                        </Field>
+                        {meta.touched && meta.error && <div>{meta.error}</div>}
+                      </div>
+                    )}
+                  </Field>
 
-                <Field
-                  name="temperament"
-                  as="textarea"
-                  placeholder="Temperament"
-                  validate={CheckBody}
-                  className={styles.inputField}
-                />
-                {errors.temperament && touched.temperament && <div>{errors.temperament}</div>}
-
-                <button type="submit">Submit</button>
+                  <Field
+                    name="temperament"
+                    as="textarea"
+                    placeholder="Temperament"
+                    validate={CheckBody}
+                    className={styles.inputField}
+                  />
+                  {errors.temperament && touched.temperament && <div>{errors.temperament}</div>}
+                </div>
+                <button type="submit" className={styles.submitBtn}>
+                  Submit
+                </button>
               </Form>
             </React.Fragment>
           )}
