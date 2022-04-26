@@ -15,6 +15,9 @@ import { createStore } from "state-pool"
 import PetForm from "app/core/components/petForm"
 import DogInfo from "app/core/components/dogInfo"
 import getPostSearch from "app/posts/queries/getPostSearch"
+import { RecentActorsRounded } from "@mui/icons-material"
+import PostCard from "app/core/components/postCard"
+import getUsersSearch from "app/users/queries/getUsersSearch"
 
 const styles = require("app/pages/home/home.module.scss")
 
@@ -84,13 +87,21 @@ const HomePage: BlitzPage = () => {
           </div>
           <div className={styles.verLine} />
           <div className={styles.content}>
-            <Suspense fallback={"Loading..."}>
-              <ScrollPost />
-            </Suspense>
+            <div>
+              {userInput.length > 0 ? (
+                <Suspense fallback={"Loading..."}>
+                  <SearchValue search_text={userInput} />
+                </Suspense>
+              ) : (
+                <Suspense fallback={"Loading..."}>
+                  <ScrollPost />
+                </Suspense>
+              )}
+            </div>
           </div>
           <div className={styles.verLine} />
           <div className={styles.rightSide}>
-            <TestComp />
+            <SearchComponent />
             <PostButton props={user} />
           </div>
         </React.Fragment>
@@ -99,28 +110,62 @@ const HomePage: BlitzPage = () => {
   )
 }
 
-const TestComp = () => {
+const SearchComponent = () => {
   const [userInput, setUserInput] = store.useState("userInput")
-  const [flag, setFlag] = store.useState("flag")
 
   const updateSearch = (event) => {
     setUserInput(event.target.value)
-    console.log(SearchPost(event.target.value))
   }
 
   return (
     <React.Fragment>
       <div>
-        <input value={userInput} onChange={(e) => updateSearch(e)} placeholder="Search" />
-        <div>
-          <button onClick={() => setFlag(!flag)}>
-            {flag != true ? <strong>Post</strong> : <label>Post</label>}
-          </button>
-          <button onClick={() => setFlag(!flag)}>
-            {flag == true ? <strong>User</strong> : <label>User</label>}
-          </button>
-        </div>
+        <input
+          value={userInput}
+          onChange={(e) => updateSearch(e)}
+          placeholder="Search for a Post..."
+          className={styles.searchInput}
+        />
       </div>
+    </React.Fragment>
+  )
+}
+
+const SearchValue = ({ search_text }) => {
+  const data = SearchPost(search_text)
+  console.log(data)
+  const [userInput, setUserInput] = store.useState("userInput")
+
+  return (
+    <React.Fragment>
+      {data!.length !== 0 ? (
+        <React.Fragment>
+          {data?.map((posts, index: number) => (
+            <React.Fragment key={index}>
+              <PostCard props={posts} />
+            </React.Fragment>
+          ))}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <div className={styles.contentSearch}>
+            <NothingFound text={userInput} />
+          </div>
+        </React.Fragment>
+      )}
+    </React.Fragment>
+  )
+}
+
+export const NothingFound = (props) => {
+  const { text } = props
+  return (
+    <React.Fragment>
+      <div className={styles.nothingFound}>
+        <label>Nothing Found for </label>
+        <label>{text}</label>
+      </div>
+      <div className={styles.underLine} />
     </React.Fragment>
   )
 }
