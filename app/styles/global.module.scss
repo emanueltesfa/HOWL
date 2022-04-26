@@ -94,7 +94,7 @@
 .howlSubText {
   font-size: medium;
   font-weight: 100;
-  color: #324b4b;
+  color: white;
 }
 .titleContainer {
   display: flex;
@@ -106,4 +106,25 @@
 .underLine {
   border-bottom: 1px solid #324b4b;
   min-width: 90%;
+}
+
+.underLine2 {
+  border-bottom: 1px solid white;
+  min-width: 90%;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+  min-width: 50vw;
+  justify-content: space-evenly;
+}
+
+.dogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

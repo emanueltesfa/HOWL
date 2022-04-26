@@ -89,7 +89,7 @@ const NewPost: BlitzPage = () => {
                 ...values,
               })
               if (res) {
-                alert(JSON.stringify(res, null, 2))
+                // alert(JSON.stringify(res, null, 2))
                 router.push("/home")
               }
             } catch (error) {

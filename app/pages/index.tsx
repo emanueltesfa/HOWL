@@ -73,7 +73,7 @@ const Home: BlitzPage = () => {
         <div className={styles.container}>
           <div className={styles.titleContainer}>
             <div className={styles.howlTitle}>HOWL</div>
-            <hr className={styles.underLine} />
+            <hr className={styles.underLine2} />
             <div className={styles.howlSubText}>Come sniff out some new friends.</div>
           </div>
 
