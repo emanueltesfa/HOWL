@@ -7,15 +7,13 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import getPosts from "app/posts/queries/getPosts"
 import ScrollPost from "app/core/components/scrollPost"
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
+import { IoAddCircleSharp } from "react-icons/io5"
 import getDogProfileUserId from "app/dog-profiles/queries/getDogProfileUserId"
 import "app/pages/users/userId.module.scss"
-import { render } from "react-dom"
 import getUserLikes from "app/user-likes/queries/getUserLikes"
 import PostCard from "app/core/components/postCard"
-import { UserLike } from "@prisma/client"
 import getPost from "app/posts/queries/getPost"
 import { Tab, Tabs, Box } from "@mui/material"
-import { number } from "yup/lib/locale"
 
 const styles = require("app/pages/users/userId.module.scss")
 
@@ -25,15 +23,16 @@ export const User = () => {
   const [deleteUserMutation] = useMutation(deleteUser)
   const [user] = useQuery(getUser, { id: userId })
   const currentUser = useCurrentUser()
-  const [{ posts }] = useQuery(getPosts, { where: { created_by: user.id } })
   const [dogProfile] = useQuery(getDogProfileUserId, { user_id: user.id })
-  const [{ userLikes }] = useQuery(getUserLikes, { where: { user_id: currentUser?.id } }) // for profile likes
-  const [loc, setLoc] = useState(false) //useEffect set for location on render
+  const [{ userLikes }] = useQuery(
+    getUserLikes,
+    { where: { user_id: currentUser?.id } },
+    { refetchInterval: 1000 }
+  ) // for profile likes
   const [tabState, setTabState] = useState(0)
 
   useEffect(() => {
     //geoLoc()
-    console.log("Test")
   }, [])
 
   const handleChange = (event: any, newTab: number) => {
@@ -43,46 +42,53 @@ export const User = () => {
   // Check if user is the same user that is logged in or visitor
   // {flag ? <MYprofile /> :<otherprofile />}
   // Potential Merge Conflict with getDogProfileUserId.ts
+  // wrap handleChange in useEffect
 
   return (
     <React.Fragment>
+      <div className="post">
+        <p>New Post!</p>
+        <button
+          onClick={() => {
+            router.push("/post/new")
+          }}
+        >
+          <IoAddCircleSharp />
+        </button>
+      </div>
       <div className={styles.container}>
         <div className="HumanProf">
-          <h1>Welcome {user.name}</h1>
-          <button
-            onClick={() => {
-              router.push("/post/new")
-            }}
-          >
-            Make Post!
-          </button>
-          <button
-            onClick={() => {
-              router.push(`/users/${user.id}/edit`)
-            }}
-          >
-            Edit Profile Page
-          </button>
+          <h1>Welcome {user.name}!</h1>
           <p>
             <CalendarMonthIcon />
-            User since {user.createdAt.toDateString()}
+            &ensp; User since {user.createdAt.toDateString()}
           </p>
         </div>
 
         {/* Feed/Likes page */}
-        <div className="feedLikes">
+        <div className="likes feed">
+          {/* <div className="button">
+            <button
+              onClick={() => {
+                router.push(`/users/${user.id}/edit`)
+              }}
+            >
+              Edit Profile Page
+            </button>
+          </div>*/}
+
           <div className="miniMenu">
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs aria-label="basic tabs example" onChange={handleChange}>
-                <Tab label="Likes" />
+              <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
                 <Tab label="Feed" />
+                <Tab label="Likes" />
               </Tabs>
             </Box>
           </div>
 
           {/*mui TABS*/}
 
-          {tabState === 0 && (
+          {tabState === 1 && (
             <React.Fragment>
               <div>
                 {userLikes.map((likes, idx) => (
@@ -93,7 +99,7 @@ export const User = () => {
               </div>
             </React.Fragment>
           )}
-          {tabState === 1 && (
+          {tabState === 0 && (
             <React.Fragment>
               <ScrollPost />
             </React.Fragment>
@@ -104,7 +110,7 @@ export const User = () => {
           <h1>Hey {dogProfile.pet_name}!</h1>
           <p>
             <CalendarMonthIcon />
-            Pet since {user.createdAt.toDateString()}
+            &ensp;Pet since {user.createdAt.toDateString()}
           </p>
         </div>
 
