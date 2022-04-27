@@ -1,13 +1,20 @@
 .layoutContainer {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: center;
   background: #324b4b;
   min-height: calc(100vh) !important;
-  margin-top: 4vh;
+  margin-top: 3vh;
   height: 100%;
   color: white;
   font-family: "Roboto", sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
+.layoutContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .layoutContent {
