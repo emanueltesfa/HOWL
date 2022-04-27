@@ -23,17 +23,23 @@ export const User = () => {
   const [deleteUserMutation] = useMutation(deleteUser)
   const [user] = useQuery(getUser, { id: userId })
   const currentUser = useCurrentUser()
+  const [{ posts }] = useQuery(getPosts, { where: { created_by: user.id } })
   const [dogProfile] = useQuery(getDogProfileUserId, { user_id: user.id })
-  const [{ userLikes }] = useQuery(
-    getUserLikes,
-    { where: { user_id: currentUser?.id } },
-    { refetchInterval: 1000 }
-  ) // for profile likes
+  const [{ userLikes }] = useQuery(getUserLikes, { where: { user_id: user?.id } }) // for profile likes
+  const [loc, setLoc] = useState(false) //useEffect set for location on render
   const [tabState, setTabState] = useState(0)
+
+  const [userFlag, setUserFlag] = useState<boolean>(false)
 
   useEffect(() => {
     //geoLoc()
-  }, [])
+    if (user.id !== currentUser!.id) {
+      setUserFlag(false)
+    } else {
+      setUserFlag(true)
+    }
+    console.log("Test")
+  }, [userId])
 
   const handleChange = (event: any, newTab: number) => {
     setTabState(newTab)
@@ -44,21 +50,41 @@ export const User = () => {
   // Potential Merge Conflict with getDogProfileUserId.ts
   // wrap handleChange in useEffect
 
+  //Dont style like this className="cssClass"
+  //Style like this className={styles.cssClass}
+
   return (
     <React.Fragment>
-      <div className="post">
-        <p>New Post!</p>
-        <button
-          onClick={() => {
-            router.push("/post/new")
-          }}
-        >
-          <IoAddCircleSharp />
-        </button>
-      </div>
+      {userFlag === true ? (
+        <React.Fragment>
+          <div className="post">
+            <p>New Post!</p>
+            <button
+              onClick={() => {
+                router.push("/post/new")
+              }}
+            >
+              <IoAddCircleSharp />
+            </button>{" "}
+          </div>
+          <div>
+            <p>Edit Profile</p>
+            <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
       <div className={styles.container}>
         <div className="HumanProf">
-          <h1>Welcome {user.name}!</h1>
+          {userFlag === true ? (
+            <h1>Welcome {user.name}!</h1>
+          ) : (
+            <React.Fragment>
+              <h1>{user.name}&apos;s Profile</h1>
+            </React.Fragment>
+          )}
+
           <p>
             <CalendarMonthIcon />
             &ensp; User since {user.createdAt.toDateString()}
@@ -67,16 +93,6 @@ export const User = () => {
 
         {/* Feed/Likes page */}
         <div className="likes feed">
-          {/* <div className="button">
-            <button
-              onClick={() => {
-                router.push(`/users/${user.id}/edit`)
-              }}
-            >
-              Edit Profile Page
-            </button>
-          </div>*/}
-
           <div className="miniMenu">
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
@@ -90,7 +106,7 @@ export const User = () => {
 
           {tabState === 1 && (
             <React.Fragment>
-              <div>
+              <div className={styles.content}>
                 {userLikes.map((likes, idx) => (
                   <React.Fragment key={idx}>
                     <Feed postId={likes.post_id} />
@@ -101,7 +117,15 @@ export const User = () => {
           )}
           {tabState === 0 && (
             <React.Fragment>
-              <ScrollPost />
+              <div className={styles.content}>
+                <Suspense fallback="Loading...">
+                  {posts.map((post, idx) => (
+                    <React.Fragment key={idx}>
+                      <PostCard props={post} />
+                    </React.Fragment>
+                  ))}
+                </Suspense>
+              </div>
             </React.Fragment>
           )}
         </div>
