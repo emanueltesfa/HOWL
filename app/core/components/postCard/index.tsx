@@ -66,7 +66,7 @@ const PostCard = ({ props }) => {
                 </a>
               </Link>
               <strong style={{ display: "flex", flexDirection: "row" }}>
-                and <div>&nbsp;{dogProfile.pet_name}&nbsp;</div> are going to&nbsp;
+                and <div>&nbsp;{dogProfile!.pet_name}&nbsp;</div> are going to&nbsp;
               </strong>
             </div>
 
