@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 0%;
+  margin-top: 2%;
+}
+
+.likesFeed {
+  flex-direction: column;
+  display: flex;
+}
+
+.button {
+  align-items: center;
+  align-content: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.post {
+  align-items: center;
+  align-content: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
