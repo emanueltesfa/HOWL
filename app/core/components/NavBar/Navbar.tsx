@@ -1,7 +1,8 @@
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import { Link, useMutation, useRouter } from "blitz"
-import React from "react"
+import getPostSearch from "app/posts/queries/getPostSearch"
+import { Link, useMutation, useQuery, useRouter } from "blitz"
+import React, { useState } from "react"
 
 const styles = require("app/core/components/NavBar/navbar.module.scss")
 
@@ -9,9 +10,15 @@ const NavBar = () => {
   const [logoutMutation] = useMutation(logout)
   const router = useRouter()
   const user = useCurrentUser()
+  const [userInput, setUserInput] = useState<string>("")
+  const [flag, setFlag] = useState<boolean>(false)
+
+  console.log()
 
   return (
     <React.Fragment>
+      {" "}
+      ``
       <nav className={styles.container}>
         <header>
           <Link href={"/home"}>
@@ -21,13 +28,8 @@ const NavBar = () => {
             </div>
           </Link>
         </header>
+
         <main className={styles.mainContent}>
-          <Link href={"/search"}>
-            {/* Will link to search page */}
-            <div className={styles.tag}>
-              <strong>Search</strong>
-            </div>
-          </Link>
           <Link href={`/users/${user!.id}`}>
             {/* Will link to users/id page */}
             <div className={styles.tag}>

@@ -1,0 +1,70 @@
+.editContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 60vw;
+  margin-top: 5vh;
+}
+
+.formUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
+}
+
+.formDog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
+}
+
+.Image {
+  border-radius: 12px;
+}
+
+.inputField {
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.1rem;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.inputFieldFile {
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.1rem;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  width: 100%;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitBtn {
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  height: 3vh;
+  width: 7vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+  background: transparent;
+  border: 2px solid #5ac8ca;
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background: #5ac8ca;
+}

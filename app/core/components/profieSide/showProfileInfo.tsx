@@ -1,5 +1,6 @@
 import React from "react"
 import blitz, { useQuery } from "blitz"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const ProfileInfo = ({ user }) => {
   //console.log(user)
@@ -11,6 +12,10 @@ const ProfileInfo = ({ user }) => {
   return (
     <React.Fragment>
       <div>{id}</div>
+      <div className="d-flex p-2 flex-column">
+        <div>{user.name}</div>
+      </div>
+      <div></div>
     </React.Fragment>
   )
 }
