@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
+import Howl2 from "public/Howl2.png"
 import { Form } from "react-final-form"
 import LoginForm from "app/auth/components/LoginForm"
 import LayoutLanding from "app/core/layouts/LayoutLanding"
@@ -72,7 +73,10 @@ const Home: BlitzPage = () => {
         </div>
         <div className={styles.container}>
           <div className={styles.titleContainer}>
-            <div className={styles.howlTitle}>HOWL</div>
+            <div className={styles.howlTitle}>
+              {/* <img alt="" src="HOWL/public/Howl2.png" /> */}
+              <Image alt="" src={Howl2} width={400} height={180} />
+            </div>
             <hr className={styles.underLine2} />
             <div className={styles.howlSubText}>Come sniff out some new friends.</div>
           </div>

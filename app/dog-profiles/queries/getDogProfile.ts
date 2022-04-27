@@ -11,7 +11,7 @@ export default resolver.pipe(resolver.zod(GetDogProfile), resolver.authorize(), 
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const dogProfile = await db.dogProfile.findFirst({ where: { id } })
 
-  if (!dogProfile) throw new NotFoundError()
+  //if (!dogProfile) throw new NotFoundError()
 
   return dogProfile
 })

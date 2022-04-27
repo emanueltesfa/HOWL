@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react"
-import { Image, Link, BlitzPage, useMutation, Routes, useQuery, useRouter } from "blitz"
+import { Image, Link, BlitzPage, useMutation, Routes, useQuery, useRouter, Head } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
