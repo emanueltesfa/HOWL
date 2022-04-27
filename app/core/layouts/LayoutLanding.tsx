@@ -12,7 +12,7 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
     <>
       <Head>
         <title>{title || "Howl-App"}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/HowlH.png" />
       </Head>
 
       {children}

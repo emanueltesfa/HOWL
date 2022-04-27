@@ -4,7 +4,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import Layout from "app/core/layouts/Layout"
 import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
 import createPost from "app/posts/mutations/createPost"
-import { useMutation, useQuery, useRouter } from "blitz"
+import { Head, useMutation, useQuery, useRouter } from "blitz"
 import db from "db"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { BlitzPage } from "next"
@@ -69,6 +69,9 @@ const NewPost: BlitzPage = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Create a new Post!</title>
+      </Head>
       <main>
         <Formik
           initialValues={initValues}
