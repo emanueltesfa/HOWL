@@ -66,49 +66,67 @@ export const User = () => {
       <div className={styles.bigContainer}>
         {userFlag === true ? (
           <React.Fragment>
-            <div className={styles.post}>
-              &emsp; &emsp; <p>New Post! &emsp; Edit Profile</p>
-              <p>
-                &emsp;
+            <div className={styles.btnContainer}>
+              <div className={styles.post}>
+                <strong>New Post!</strong>
                 <button
+                  className={styles.btn}
                   onClick={() => {
                     router.push("/post/new")
                   }}
                 >
                   <IoAddCircleSharp />
                 </button>{" "}
-                &emsp; &emsp; &emsp;
-                <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
-              </p>
+              </div>
+              <div className={styles.post}>
+                <strong>Edit Profile</strong>
+                <button
+                  onClick={() => router.push(`/users/${user.id}/edit`)}
+                  className={styles.btn}
+                >
+                  Edit
+                </button>
+              </div>
             </div>
           </React.Fragment>
         ) : (
           <React.Fragment></React.Fragment>
         )}
-
         <div className={styles.container}>
-          <div className={styles.human}>
+          <div className="HumanProf">
             {userFlag === true ? (
-              <h1>Welcome {user.name}!</h1>
+              <React.Fragment>
+                <div className={styles.profileCotainer}>
+                  {welcomeFlag === false ? <h1>Welcome {user.name}!</h1> : <h1>{user.name}</h1>}
+                  <GetAvatar userId={user.id} height={125} width={150} />
+                  <p className={styles.userSince}>
+                    <CalendarMonthIcon />
+                    &ensp; User since {user.createdAt.toDateString()}
+                  </p>
+                </div>
+              </React.Fragment>
             ) : (
               <React.Fragment>
-                <h1>{user.name}&apos;s Profile</h1>
+                <div className={styles.profileCotainer}>
+                  <h1>{user.name}&apos;s Profile</h1>
+                  <GetAvatar userId={user.id} height={125} width={150} />
+                  <p className={styles.userSince}>
+                    <CalendarMonthIcon />
+                    &ensp; User since {user.createdAt.toDateString()}
+                  </p>
+                </div>
               </React.Fragment>
             )}
-
-            <p>
-              <CalendarMonthIcon />
-              &ensp; User since {user.createdAt.toDateString()}
-            </p>
           </div>
 
           {/* Feed/Likes page */}
-          <div className={styles.likeFeed}>
-            <div className={styles.minimenu}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
-                  <Tab label="Feed" />
-                  <Tab label="Likes" />
+          <div className={styles.verLine} />
+          <div className={styles.feedsLikes}>
+            <div className="miniMenu">
+              <Box sx={{ borderBottom: 1, borderColor: "white", width: "48vw" }}>
+                <Tabs aria-label="basic tabs example" onChange={handleChange}>
+                  <Tab label={<Typography sx={{ color: "white" }}>Feed</Typography>} />
+                  <Tab label={<Typography sx={{ color: "white" }}>Likes</Typography>} />
                 </Tabs>
               </Box>
             </div>
@@ -119,7 +137,6 @@ export const User = () => {
               <React.Fragment>
                 <div className={styles.content}>
                   {userLikes.map((likes, idx) => (
-
                     <React.Fragment key={idx}>
                       <Feed postId={likes.post_id} />
                     </React.Fragment>
@@ -141,15 +158,27 @@ export const User = () => {
               </React.Fragment>
             )}
           </div>
+          <div className={styles.verLine} />
+          <div>
+            <div className={styles.profileCotainer}>
+              <h1>Hey {dogProfile.pet_name}!</h1>
+              <GetDogAvatar userId={user.id} height={125} width={150} />
+              <p className={styles.userSince}>
+                <CalendarMonthIcon />
+                &ensp;Pet since {user.createdAt.toDateString()}
+              </p>
+              <p>
+                {dogProfile.pet_name}
+                &nbsp;is&nbsp;
+                {dogProfile.age}
+              </p>
 
-          <div className={styles.pet}>
-            <h1>Hey {dogProfile.pet_name}!</h1>
-            <p>
-              <CalendarMonthIcon />
-              &ensp;Pet since {user.createdAt.toDateString()}
-            </p>
+              <p className={styles.temp}>
+                <label>{dogProfile.pet_name}&apos;s &nbsp;Temperment</label>{" "}
+                {dogProfile.temperament}
+              </p>
+            </div>
           </div>
-
           {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
         </Link> */}

@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column;
   margin-top: 5vh;
+  width: 100vw;
   align-items: center;
-
 }
 
 .likeFeed {
@@ -68,20 +68,6 @@
   justify-content: space-evenly;
 }
 
-.userSince {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-content: center;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-
-  top: 10%;
-  left: 45%;
-
-}
-
 .content {
   margin-top: 1vh;
   display: flex;
@@ -92,6 +78,13 @@
   overflow-y: scroll;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none;
+}
+
+.userSince {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .content::-webkit-scrollbar {
@@ -114,4 +107,14 @@
   width: 48vw;
   // margin-left: 1vw;
   // margin-right: 1vw;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  max-width: 70vw;
+  height: 2rem;
 }
