@@ -1,8 +1,10 @@
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import getDogProfile from "app/dog-profiles/queries/getDogProfile"
+import getDogProfileUserId from "app/dog-profiles/queries/getDogProfileUserId"
 import getPostSearch from "app/posts/queries/getPostSearch"
 import { Link, useMutation, useQuery, useRouter } from "blitz"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const styles = require("app/core/components/NavBar/navbar.module.scss")
 
@@ -13,7 +15,11 @@ const NavBar = () => {
   const [userInput, setUserInput] = useState<string>("")
   const [flag, setFlag] = useState<boolean>(false)
 
-  console.log()
+  useEffect(() => {
+    if (window.location.pathname === `/users/${user!.id}/CreatePet`) {
+      setFlag(true)
+    }
+  }, [window.location.pathname])
 
   return (
     <React.Fragment>
@@ -23,7 +29,7 @@ const NavBar = () => {
         <header>
           <Link href={"/home"}>
             {/* Will link to home page */}
-            <div className={styles.tag}>
+            <div className={flag !== true ? styles.tag : styles.disableTag}>
               <strong>HOWL</strong>
             </div>
           </Link>
@@ -32,7 +38,7 @@ const NavBar = () => {
         <main className={styles.mainContent}>
           <Link href={`/users/${user!.id}`}>
             {/* Will link to users/id page */}
-            <div className={styles.tag}>
+            <div className={flag !== true ? styles.tag : styles.disableTag}>
               <strong>Profile</strong>
             </div>
           </Link>

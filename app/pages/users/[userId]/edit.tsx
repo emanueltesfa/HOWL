@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { Suspense, useState } from "react"
 import {
   Head,
@@ -378,15 +379,15 @@ export const GetAvatar = ({
   return (
     <React.Fragment>
       {user.profile_pic_file === "" ? (
-        <Image
-          src={"/../public/defaultProfilePic/profileImg.png"}
+        <img
+          src={"/defaultProfilePic/profileImg.png"}
           alt={`${user.name} Profile Picture`}
           height={height}
           width={width}
           className={styles.Image}
         />
       ) : (
-        <Image
+        <img
           src={user.profile_pic_file}
           alt={`${user.name} Profile Picture`}
           height={height}
@@ -404,15 +405,15 @@ export const GetDogAvatar = ({ userId, width, height }) => {
   return (
     <React.Fragment>
       {dogProfile.dog_profile_pic === "" ? (
-        <Image
-          src={"/../public/defaultProfilePic/default_dog.jpg"}
+        <img
+          src={"/defaultProfilePic/default_dog.jpg"}
           alt={`${dogProfile.pet_name} Profile Picture`}
           height={height}
           width={width}
           className={styles.Image}
         />
       ) : (
-        <Image
+        <img
           src={dogProfile.dog_profile_pic}
           alt={`${dogProfile.pet_name} Profile Picture`}
           height={height}

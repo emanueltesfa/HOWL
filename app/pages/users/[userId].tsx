@@ -13,7 +13,9 @@ import "app/pages/users/userId.module.scss"
 import getUserLikes from "app/user-likes/queries/getUserLikes"
 import PostCard from "app/core/components/postCard"
 import getPost from "app/posts/queries/getPost"
-import { Tab, Tabs, Box } from "@mui/material"
+import { Tab, Tabs, Box, Typography } from "@mui/material"
+import { GetAvatar, GetDogAvatar } from "./[userId]/edit"
+import getLoginAttempts from "app/login-attempts/queries/getLoginAttempts"
 
 const styles = require("app/pages/users/userId.module.scss")
 
@@ -26,10 +28,12 @@ export const User = () => {
   const [{ posts }] = useQuery(getPosts, { where: { created_by: user.id } })
   const [dogProfile] = useQuery(getDogProfileUserId, { user_id: user.id })
   const [{ userLikes }] = useQuery(getUserLikes, { where: { user_id: user?.id } }) // for profile likes
+  const [{ loginAttempts }] = useQuery(getLoginAttempts, { where: { user_id: user.id } })
   const [loc, setLoc] = useState(false) //useEffect set for location on render
   const [tabState, setTabState] = useState(0)
-
+  const date = new Date()
   const [userFlag, setUserFlag] = useState<boolean>(false)
+  const [welcomeFlag, setWelcomeFlag] = useState<boolean>(false)
 
   useEffect(() => {
     //geoLoc()
@@ -45,6 +49,10 @@ export const User = () => {
     setTabState(newTab)
   }
 
+  if (loginAttempts.length > 1) {
+    setWelcomeFlag(true)
+  }
+
   // Check if user is the same user that is logged in or visitor
   // {flag ? <MYprofile /> :<otherprofile />}
   // Potential Merge Conflict with getDogProfileUserId.ts
@@ -55,49 +63,70 @@ export const User = () => {
 
   return (
     <React.Fragment>
-      {userFlag === true ? (
-        <React.Fragment>
-          <div className="post">
-            <p>New Post!</p>
-            <button
-              onClick={() => {
-                router.push("/post/new")
-              }}
-            >
-              <IoAddCircleSharp />
-            </button>{" "}
-          </div>
-          <div>
-            <p>Edit Profile</p>
-            <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
-          </div>
-        </React.Fragment>
-      ) : (
-        <React.Fragment></React.Fragment>
-      )}
       <div className={styles.container}>
         <div className="HumanProf">
           {userFlag === true ? (
-            <h1>Welcome {user.name}!</h1>
+            <React.Fragment>
+              <div className={styles.profileCotainer}>
+                {welcomeFlag === false ? <h1>Welcome {user.name}!</h1> : <h1>{user.name}</h1>}
+                <GetAvatar userId={user.id} height={125} width={150} />
+                <p className={styles.userSince}>
+                  <CalendarMonthIcon />
+                  &ensp; User since {user.createdAt.toDateString()}
+                </p>
+              </div>
+            </React.Fragment>
           ) : (
             <React.Fragment>
-              <h1>{user.name}&apos;s Profile</h1>
+              <div className={styles.profileCotainer}>
+                <h1>{user.name}&apos;s Profile</h1>
+                <GetAvatar userId={user.id} height={125} width={150} />
+                <p className={styles.userSince}>
+                  <CalendarMonthIcon />
+                  &ensp; User since {user.createdAt.toDateString()}
+                </p>
+              </div>
             </React.Fragment>
           )}
 
-          <p>
-            <CalendarMonthIcon />
-            &ensp; User since {user.createdAt.toDateString()}
-          </p>
+          {userFlag === true ? (
+            <React.Fragment>
+              <div className={styles.btnContainer}>
+                <div className={styles.post}>
+                  <strong>New Post!</strong>
+                  <button
+                    className={styles.btn}
+                    onClick={() => {
+                      router.push("/post/new")
+                    }}
+                  >
+                    <IoAddCircleSharp />
+                  </button>{" "}
+                </div>
+                <div className={styles.post}>
+                  <strong>Edit Profile</strong>
+                  <button
+                    onClick={() => router.push(`/users/${user.id}/edit`)}
+                    className={styles.btn}
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </React.Fragment>
+          ) : (
+            <React.Fragment></React.Fragment>
+          )}
         </div>
 
         {/* Feed/Likes page */}
-        <div className="likes feed">
+        <div className={styles.verLine} />
+        <div className={styles.feedsLikes}>
           <div className="miniMenu">
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
-                <Tab label="Feed" />
-                <Tab label="Likes" />
+            <Box sx={{ borderBottom: 1, borderColor: "white", width: "48vw" }}>
+              <Tabs aria-label="basic tabs example" onChange={handleChange}>
+                <Tab label={<Typography sx={{ color: "white" }}>Feed</Typography>} />
+                <Tab label={<Typography sx={{ color: "white" }}>Likes</Typography>} />
               </Tabs>
             </Box>
           </div>
@@ -129,15 +158,26 @@ export const User = () => {
             </React.Fragment>
           )}
         </div>
-
+        <div className={styles.verLine} />
         <div>
-          <h1>Hey {dogProfile.pet_name}!</h1>
-          <p>
-            <CalendarMonthIcon />
-            &ensp;Pet since {user.createdAt.toDateString()}
-          </p>
-        </div>
+          <div className={styles.profileCotainer}>
+            <h1>Hey {dogProfile.pet_name}!</h1>
+            <GetDogAvatar userId={user.id} height={125} width={150} />
+            <p className={styles.userSince}>
+              <CalendarMonthIcon />
+              &ensp;Pet since {user.createdAt.toDateString()}
+            </p>
+            <p>
+              {dogProfile.pet_name}
+              &nbsp;is&nbsp;
+              {dogProfile.age}
+            </p>
 
+            <p className={styles.temp}>
+              <label>{dogProfile.pet_name}&apos;s &nbsp;Temperment</label> {dogProfile.temperament}
+            </p>
+          </div>
+        </div>
         {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
         </Link> */}

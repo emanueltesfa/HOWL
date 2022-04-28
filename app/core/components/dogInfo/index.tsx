@@ -15,8 +15,8 @@ const DogInfo = ({ owner }) => {
     <React.Fragment>
       <div className={styles.dogContent}>
         <GetDogAvatar userId={owner.id} width={90} height={80} />
-        <div>{pet_name}</div>
-        <div>{breed}</div>
+        <h3>{pet_name}</h3>
+        <h5>{breed}</h5>
         {/* <main>
           <div>{pet_name}</div>
           <div>{breed}</div>

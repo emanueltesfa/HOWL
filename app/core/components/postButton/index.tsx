@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Modal } from "@mui/material"
 import getDogProfiles from "app/dog-profiles/queries/getDogProfiles"
 import getDogProfileUserId from "app/dog-profiles/queries/getDogProfileUserId"
@@ -32,15 +33,15 @@ export const GetAvatar = ({ userId }) => {
   return (
     <React.Fragment>
       {user.profile_pic_file === "" ? (
-        <Image
-          src={"/../public/defaultProfilePic/profileImg.png"}
+        <img
+          src={"/defaultProfilePic/profileImg.png"}
           alt={`${user.name} Profile Picture`}
           height={30}
           width={40}
           className={styles.Image}
         />
       ) : (
-        <Image
+        <img
           src={user.profile_pic_file}
           alt={`${user.name} Profile Picture`}
           height={30}
@@ -102,22 +103,22 @@ const PostButton = ({ props }) => {
   }
 
   //Gets user location and it will ask for the users permission
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude)
-      setLong(position.coords.longitude)
-      setPoint({ lat: position.coords.latitude, lng: position.coords.longitude })
-      console.log("Lat: ", position.coords.latitude)
-      console.log("Long: ", position.coords.longitude)
-    })
-  }
+  // const getLocation = () => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     setLat(position.coords.latitude)
+  //     setLong(position.coords.longitude)
+  //     setPoint({ lat: position.coords.latitude, lng: position.coords.longitude })
+  //     console.log("Lat: ", position.coords.latitude)
+  //     console.log("Long: ", position.coords.longitude)
+  //   })
+  // }
 
   const [updateComp, setUpdateComp] = store.useState("updateComp")
   const [showModal, setShowModal] = useState<boolean>(false)
 
-  useEffect(() => {
-    getLocation()
-  }, [])
+  // useEffect(() => {
+  //   getLocation()
+  // }, [])
 
   return (
     <React.Fragment>

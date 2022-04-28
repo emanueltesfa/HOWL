@@ -29,6 +29,19 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.layoutContent2 {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: #5ac8ca;
+  min-height: 100vh;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
 .layoutContent::-webkit-scrollbar {
   display: none;
 }
