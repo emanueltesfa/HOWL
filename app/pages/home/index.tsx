@@ -77,13 +77,10 @@ const HomePage: BlitzPage = () => {
       {user != undefined && (
         <React.Fragment>
           <div className={styles.homeSide}>
-            <div>
-              <Suspense fallback={"Loading..."}>
-                <ProfileInfo user={user} />
-                <DogInfo owner={user} />
-              </Suspense>
-            </div>
-            <div></div>
+            <Suspense fallback={"Loading..."}>
+              <ProfileInfo user={user} />
+              <DogInfo owner={user} />
+            </Suspense>
           </div>
           <div className={styles.verLine} />
           <div className={styles.content}>

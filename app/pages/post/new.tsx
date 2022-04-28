@@ -120,7 +120,11 @@ const NewPost: BlitzPage = () => {
                     </option>
                     {dogProfiles.map((pets, idx) => (
                       <React.Fragment key={idx}>
-                        <option value={pets.pet_name} label={pets.pet_name}>
+                        <option
+                          value={pets.pet_name}
+                          label={pets.pet_name}
+                          className={styles.optionField}
+                        >
                           {pets.pet_name}
                         </option>
                       </React.Fragment>

@@ -44,11 +44,11 @@ export const LoginForm = (props: LoginFormProps) => {
           type="password"
           className={styles.loginField}
         />
-        <div>
+        {/* <div>
           <Link href={Routes.ForgotPasswordPage()}>
             <a className={styles.passwordLink}>Forgot your password?</a>
           </Link>
-        </div>
+        </div> */}
       </Form>
 
       <div className={styles.passwordLink}>
