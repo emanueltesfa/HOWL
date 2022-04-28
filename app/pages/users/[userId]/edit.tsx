@@ -206,7 +206,7 @@ export const EditUser = () => {
               </Form>
             )}
           </Formik>
-          <SelectImage container_name={user.email} />
+          {/* <SelectImage container_name={user.name} /> */}
         </div>
         <UpdatePet user={user} />
       </div>

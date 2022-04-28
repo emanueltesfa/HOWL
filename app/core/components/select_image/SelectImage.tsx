@@ -7,7 +7,7 @@ import { useState } from "react"
 
 const SelectImage = ({ container_name }) => {
   var selected_file
-  const [{ users }] = useQuery(getUsers, { where: { email: container_name } })
+  const [{ users }] = useQuery(getUsers, { where: { name: container_name } })
   const [updateProfilePic] = useMutation(updateUser)
   const user = users[0]
   var tempFile: File = new File([], "", { type: "application/zip" })
