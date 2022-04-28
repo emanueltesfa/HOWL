@@ -63,124 +63,97 @@ export const User = () => {
 
   return (
     <React.Fragment>
-      <div className={styles.container}>
-        <div className="HumanProf">
-          {userFlag === true ? (
-            <React.Fragment>
-              <div className={styles.profileCotainer}>
-                {welcomeFlag === false ? <h1>Welcome {user.name}!</h1> : <h1>{user.name}</h1>}
-                <GetAvatar userId={user.id} height={125} width={150} />
-                <p className={styles.userSince}>
-                  <CalendarMonthIcon />
-                  &ensp; User since {user.createdAt.toDateString()}
-                </p>
-              </div>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <div className={styles.profileCotainer}>
+      <div className={styles.bigContainer}>
+        {userFlag === true ? (
+          <React.Fragment>
+            <div className={styles.post}>
+              &emsp; &emsp; <p>New Post! &emsp; Edit Profile</p>
+              <p>
+                &emsp;
+                <button
+                  onClick={() => {
+                    router.push("/post/new")
+                  }}
+                >
+                  <IoAddCircleSharp />
+                </button>{" "}
+                &emsp; &emsp; &emsp;
+                <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
+              </p>
+            </div>
+          </React.Fragment>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
+
+        <div className={styles.container}>
+          <div className={styles.human}>
+            {userFlag === true ? (
+              <h1>Welcome {user.name}!</h1>
+            ) : (
+              <React.Fragment>
                 <h1>{user.name}&apos;s Profile</h1>
-                <GetAvatar userId={user.id} height={125} width={150} />
-                <p className={styles.userSince}>
-                  <CalendarMonthIcon />
-                  &ensp; User since {user.createdAt.toDateString()}
-                </p>
-              </div>
-            </React.Fragment>
-          )}
+              </React.Fragment>
+            )}
 
-          {userFlag === true ? (
-            <React.Fragment>
-              <div className={styles.btnContainer}>
-                <div className={styles.post}>
-                  <strong>New Post!</strong>
-                  <button
-                    className={styles.btn}
-                    onClick={() => {
-                      router.push("/post/new")
-                    }}
-                  >
-                    <IoAddCircleSharp />
-                  </button>{" "}
-                </div>
-                <div className={styles.post}>
-                  <strong>Edit Profile</strong>
-                  <button
-                    onClick={() => router.push(`/users/${user.id}/edit`)}
-                    className={styles.btn}
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-            </React.Fragment>
-          ) : (
-            <React.Fragment></React.Fragment>
-          )}
-        </div>
-
-        {/* Feed/Likes page */}
-        <div className={styles.verLine} />
-        <div className={styles.feedsLikes}>
-          <div className="miniMenu">
-            <Box sx={{ borderBottom: 1, borderColor: "white", width: "48vw" }}>
-              <Tabs aria-label="basic tabs example" onChange={handleChange}>
-                <Tab label={<Typography sx={{ color: "white" }}>Feed</Typography>} />
-                <Tab label={<Typography sx={{ color: "white" }}>Likes</Typography>} />
-              </Tabs>
-            </Box>
+            <p>
+              <CalendarMonthIcon />
+              &ensp; User since {user.createdAt.toDateString()}
+            </p>
           </div>
 
-          {/*mui TABS*/}
+          {/* Feed/Likes page */}
+          <div className={styles.likeFeed}>
+            <div className={styles.minimenu}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
+                  <Tab label="Feed" />
+                  <Tab label="Likes" />
+                </Tabs>
+              </Box>
+            </div>
 
-          {tabState === 1 && (
-            <React.Fragment>
-              <div className={styles.content}>
-                {userLikes.map((likes, idx) => (
-                  <React.Fragment key={idx}>
-                    <Feed postId={likes.post_id} />
-                  </React.Fragment>
-                ))}
-              </div>
-            </React.Fragment>
-          )}
-          {tabState === 0 && (
-            <React.Fragment>
-              <div className={styles.content}>
-                <Suspense fallback="Loading...">
-                  {posts.map((post, idx) => (
+            {/*mui TABS*/}
+
+            {tabState === 1 && (
+              <React.Fragment>
+                <div className={styles.content}>
+                  {userLikes.map((likes, idx) => (
+
                     <React.Fragment key={idx}>
-                      <PostCard props={post} />
+                      <Feed postId={likes.post_id} />
                     </React.Fragment>
                   ))}
-                </Suspense>
-              </div>
-            </React.Fragment>
-          )}
-        </div>
-        <div className={styles.verLine} />
-        <div>
-          <div className={styles.profileCotainer}>
+                </div>
+              </React.Fragment>
+            )}
+            {tabState === 0 && (
+              <React.Fragment>
+                <div className={styles.content}>
+                  <Suspense fallback="Loading...">
+                    {posts.map((post, idx) => (
+                      <React.Fragment key={idx}>
+                        <PostCard props={post} />
+                      </React.Fragment>
+                    ))}
+                  </Suspense>
+                </div>
+              </React.Fragment>
+            )}
+          </div>
+
+          <div className={styles.pet}>
             <h1>Hey {dogProfile.pet_name}!</h1>
-            <GetDogAvatar userId={user.id} height={125} width={150} />
-            <p className={styles.userSince}>
+            <p>
               <CalendarMonthIcon />
               &ensp;Pet since {user.createdAt.toDateString()}
             </p>
-            <p>
-              {dogProfile.pet_name}
-              &nbsp;is&nbsp;
-              {dogProfile.age}
-            </p>
-
-            <p className={styles.temp}>
-              <label>{dogProfile.pet_name}&apos;s &nbsp;Temperment</label> {dogProfile.temperament}
-            </p>
           </div>
-        </div>
-        {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
+
+          {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
         </Link> */}
+        </div>
       </div>
     </React.Fragment>
   )

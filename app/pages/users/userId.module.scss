@@ -1,12 +1,22 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  padding: 0%;
+  margin-top: 2%;
+  top: 10%;
+}
+.bigContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+  align-items: center;
+
 }
 
-.likesFeed {
+.likeFeed {
   flex-direction: column;
   display: flex;
+  top: 20%;
 }
 
 .button {
@@ -14,8 +24,7 @@
   align-content: center;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  position: absolute;
-  top: 50%;
+
   left: 50%;
 }
 .post {
@@ -64,6 +73,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-content: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  top: 10%;
+  left: 45%;
+
 }
 
 .content {
