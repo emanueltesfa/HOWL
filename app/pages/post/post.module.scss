@@ -1,0 +1,91 @@
+.formikContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 60vh;
+  width: 100%;
+}
+
+.dogSelect {
+  display: flex;
+  flex-direction: column;
+  height: 7vh;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50vw;
+  justify-content: space-evenly;
+}
+
+.formikBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 30vh;
+  background: transparent;
+}
+
+.bodyContent {
+  width: 30vw;
+  min-height: 20vh;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 12px;
+  outline: none;
+  border-top: 1px solid white;
+  border: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  margin-bottom: 5vh;
+  margin-top: 1vh;
+}
+
+.underLine {
+  min-width: 100%;
+  border-bottom: 1px solid white;
+  margin-top: 3vh;
+}
+
+.submitBtn {
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  height: 4vh;
+  width: 7vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+  background: transparent;
+  border: 2px solid #5ac8ca;
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background: #5ac8ca;
+}
+
+.selectField {
+  margin-top: 1rem;
+  background: transparent;
+  outline: 1px solid #5ac8ca;
+  border-radius: 6px;
+  color: white;
+  padding: 0.25rem;
+  border: none;
+  width: 13vw;
+  color: #5ac8ca;
+}
+
+.errorMessage {
+  margin-top: 0.5rem;
+}

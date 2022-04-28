@@ -1,0 +1,66 @@
+.container {
+  min-height: 15vh;
+  min-width: 48vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+  margin-bottom: 1vh;
+  font-family: "Roboto", sans-serif;
+}
+
+.keep {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.underLine {
+  width: 48vw;
+  border-bottom: 1px solid white;
+  margin-bottom: 1vh;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 5vh;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.likeBtn {
+  border: none;
+  background: transparent;
+  color: #5ac8ca;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.locationLink {
+  color: #5ac8ca;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.locationLink:hover {
+  transform: translateX(1rem);
+}
+
+.postBody {
+  width: 46vw;
+  margin-left: 1vw;
+}
+
+.subHead {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,51 @@
+.sideContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: none;
+}
+
+.threeUsers {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-left: 0.5vw;
+}
+
+.userName {
+  cursor: pointer;
+}
+
+.Image {
+  border-radius: 12px;
+}
+
+.userLink {
+  display: flex;
+  min-width: 6vw;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+}
+
+.postBtn {
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  height: 4vh;
+  width: 7vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+  background: transparent;
+  border: 2px solid #5ac8ca;
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.postBtn:hover {
+  background: #5ac8ca;
+}

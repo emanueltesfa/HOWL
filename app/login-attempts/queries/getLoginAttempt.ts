@@ -1,0 +1,21 @@
+import { resolver, NotFoundError } from "blitz"
+import db from "db"
+import { z } from "zod"
+
+const GetLoginAttempt = z.object({
+  // This accepts type of undefined, but is required at runtime
+  id: z.number().optional().refine(Boolean, "Required"),
+})
+
+export default resolver.pipe(
+  resolver.zod(GetLoginAttempt),
+  resolver.authorize(),
+  async ({ id }) => {
+    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+    const loginAttempt = await db.loginAttempts.findFirst({ where: { id } })
+
+    if (!loginAttempt) throw new NotFoundError()
+
+    return loginAttempt
+  }
+)
