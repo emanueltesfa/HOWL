@@ -55,92 +55,96 @@ export const User = () => {
 
   return (
     <React.Fragment>
-      {userFlag === true ? (
-        <React.Fragment>
-          <div className="post">
-            <p>New Post!</p>
-            <button
-              onClick={() => {
-                router.push("/post/new")
-              }}
-            >
-              <IoAddCircleSharp />
-            </button>{" "}
-          </div>
-          <div>
-            <p>Edit Profile</p>
-            <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
-          </div>
-        </React.Fragment>
-      ) : (
-        <React.Fragment></React.Fragment>
-      )}
-      <div className={styles.container}>
-        <div className="HumanProf">
-          {userFlag === true ? (
-            <h1>Welcome {user.name}!</h1>
-          ) : (
-            <React.Fragment>
-              <h1>{user.name}&apos;s Profile</h1>
-            </React.Fragment>
-          )}
+      <div className={styles.bigContainer}>
+        {userFlag === true ? (
+          <React.Fragment>
+            <div className={styles.post}>
+              &emsp; &emsp; <p>New Post! &emsp; Edit Profile</p>
+              <p>
+                &emsp;
+                <button
+                  onClick={() => {
+                    router.push("/post/new")
+                  }}
+                >
+                  <IoAddCircleSharp />
+                </button>{" "}
+                &emsp; &emsp; &emsp;
+                <button onClick={() => router.push(`/users/${user.id}/edit`)}>Edit</button>
+              </p>
+            </div>
+          </React.Fragment>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
 
-          <p>
-            <CalendarMonthIcon />
-            &ensp; User since {user.createdAt.toDateString()}
-          </p>
-        </div>
+        <div className={styles.container}>
+          <div className={styles.human}>
+            {userFlag === true ? (
+              <h1>Welcome {user.name}!</h1>
+            ) : (
+              <React.Fragment>
+                <h1>{user.name}&apos;s Profile</h1>
+              </React.Fragment>
+            )}
 
-        {/* Feed/Likes page */}
-        <div className="likes feed">
-          <div className="miniMenu">
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
-                <Tab label="Feed" />
-                <Tab label="Likes" />
-              </Tabs>
-            </Box>
+            <p>
+              <CalendarMonthIcon />
+              &ensp; User since {user.createdAt.toDateString()}
+            </p>
           </div>
 
-          {/*mui TABS*/}
+          {/* Feed/Likes page */}
+          <div className={styles.likeFeed}>
+            <div className={styles.minimenu}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs aria-label="basic tabs example" onChange={handleChange} centered>
+                  <Tab label="Feed" />
+                  <Tab label="Likes" />
+                </Tabs>
+              </Box>
+            </div>
 
-          {tabState === 1 && (
-            <React.Fragment>
-              <div className={styles.content}>
-                {userLikes.map((likes, idx) => (
-                  <React.Fragment key={idx}>
-                    <Feed postId={likes.post_id} />
-                  </React.Fragment>
-                ))}
-              </div>
-            </React.Fragment>
-          )}
-          {tabState === 0 && (
-            <React.Fragment>
-              <div className={styles.content}>
-                <Suspense fallback="Loading...">
-                  {posts.map((post, idx) => (
+            {/*mui TABS*/}
+
+            {tabState === 1 && (
+              <React.Fragment>
+                <div className={styles.content}>
+                  {userLikes.map((likes, idx) => (
                     <React.Fragment key={idx}>
-                      <PostCard props={post} />
+                      <Feed postId={likes.post_id} />
                     </React.Fragment>
                   ))}
-                </Suspense>
-              </div>
-            </React.Fragment>
-          )}
-        </div>
+                </div>
+              </React.Fragment>
+            )}
+            {tabState === 0 && (
+              <React.Fragment>
+                <div className={styles.content}>
+                  <Suspense fallback="Loading...">
+                    {posts.map((post, idx) => (
+                      <React.Fragment key={idx}>
+                        <PostCard props={post} />
+                      </React.Fragment>
+                    ))}
+                  </Suspense>
+                </div>
+              </React.Fragment>
+            )}
+          </div>
 
-        <div>
-          <h1>Hey {dogProfile.pet_name}!</h1>
-          <p>
-            <CalendarMonthIcon />
-            &ensp;Pet since {user.createdAt.toDateString()}
-          </p>
-        </div>
+          <div className={styles.pet}>
+            <h1>Hey {dogProfile.pet_name}!</h1>
+            <p>
+              <CalendarMonthIcon />
+              &ensp;Pet since {user.createdAt.toDateString()}
+            </p>
+          </div>
 
-        {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
+          {/* <Link href={Routes.EditUserPage({ userId: user.id })}>
           <a>Edit</a>
         </Link> */}
+        </div>
       </div>
     </React.Fragment>
   )
