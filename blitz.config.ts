@@ -7,6 +7,10 @@ const config: BlitzConfig = {
       isAuthorized: simpleRolesIsAuthorized,
     }),
   ],
+  images: {
+    domains: ["howlimagestorage.blob.core.windows.net"],
+  },
+
   env: {
     SESSION_SECRET_KEY: "JFKLHJLSHDFJKLSHIFPOEHWUNFUEBUPCBEWBFJLKSDB",
   },

@@ -6,6 +6,7 @@ import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import Howl2 from "public/Howl2.png"
 import { Form } from "react-final-form"
+import SelectImage from "app/core/components/select_image/SelectImage"
 import LoginForm from "app/auth/components/LoginForm"
 import LayoutLanding from "app/core/layouts/LayoutLanding"
 
@@ -14,7 +15,7 @@ const styles = require("../styles/global.module.scss")
 export const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
+  console.log(process.env.CONNECTION_STRING)
   if (currentUser) {
     return (
       <>

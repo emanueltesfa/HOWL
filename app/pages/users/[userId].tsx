@@ -13,7 +13,9 @@ import "app/pages/users/userId.module.scss"
 import getUserLikes from "app/user-likes/queries/getUserLikes"
 import PostCard from "app/core/components/postCard"
 import getPost from "app/posts/queries/getPost"
-import { Tab, Tabs, Box } from "@mui/material"
+import { Tab, Tabs, Box, Typography } from "@mui/material"
+import { GetAvatar, GetDogAvatar } from "./[userId]/edit"
+import getLoginAttempts from "app/login-attempts/queries/getLoginAttempts"
 
 const styles = require("app/pages/users/userId.module.scss")
 
@@ -26,10 +28,12 @@ export const User = () => {
   const [{ posts }] = useQuery(getPosts, { where: { created_by: user.id } })
   const [dogProfile] = useQuery(getDogProfileUserId, { user_id: user.id })
   const [{ userLikes }] = useQuery(getUserLikes, { where: { user_id: user?.id } }) // for profile likes
+  const [{ loginAttempts }] = useQuery(getLoginAttempts, { where: { user_id: user.id } })
   const [loc, setLoc] = useState(false) //useEffect set for location on render
   const [tabState, setTabState] = useState(0)
-
+  const date = new Date()
   const [userFlag, setUserFlag] = useState<boolean>(false)
+  const [welcomeFlag, setWelcomeFlag] = useState<boolean>(false)
 
   useEffect(() => {
     //geoLoc()
@@ -43,6 +47,10 @@ export const User = () => {
 
   const handleChange = (event: any, newTab: number) => {
     setTabState(newTab)
+  }
+
+  if (loginAttempts.length > 1) {
+    setWelcomeFlag(true)
   }
 
   // Check if user is the same user that is logged in or visitor
@@ -111,6 +119,7 @@ export const User = () => {
               <React.Fragment>
                 <div className={styles.content}>
                   {userLikes.map((likes, idx) => (
+
                     <React.Fragment key={idx}>
                       <Feed postId={likes.post_id} />
                     </React.Fragment>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { Suspense, useState } from "react"
 import {
   Head,
@@ -24,6 +25,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { CheckBody } from "app/pages/post/new"
 import dogBreeds from "dog-breeds"
 import { StyleSharp } from "@mui/icons-material"
+import SelectImage from "app/core/components/select_image/SelectImage"
 
 const styles = require("app/pages/users/[userId]/edit.module.scss")
 
@@ -160,11 +162,30 @@ export const EditUser = () => {
                   {/* <label className={styles.labelContainer}>
                     Profile Picture
                     <Field
-                      type="file"
                       name="profile_pic"
                       disabled={timeoutFlag}
-                      className={styles.inputFieldFile}
-                    />
+                      // className={styles.inputFieldFile}
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                      }) => (
+                        <div>
+                          <input
+                          type="text"
+                          placeholder={`${userName}`}
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          disabled={timeoutFlag}
+                          {...field}
+                          className={styles.inputField}
+                        />
+
+                          {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                        </div>
+                      )}
+                    </Field>
                     {errors.profile_pic && touched.profile_pic && <div>{errors.profile_pic}</div>}
                   </label> */}
                   <label className={styles.labelContainer}>
@@ -185,6 +206,7 @@ export const EditUser = () => {
               </Form>
             )}
           </Formik>
+          <SelectImage container_name={user.email} />
         </div>
         <UpdatePet user={user} />
       </div>
@@ -378,15 +400,15 @@ export const GetAvatar = ({
   return (
     <React.Fragment>
       {user.profile_pic_file === "" ? (
-        <Image
-          src={"/../public/defaultProfilePic/profileImg.png"}
+        <img
+          src={"/defaultProfilePic/profileImg.png"}
           alt={`${user.name} Profile Picture`}
           height={height}
           width={width}
           className={styles.Image}
         />
       ) : (
-        <Image
+        <img
           src={user.profile_pic_file}
           alt={`${user.name} Profile Picture`}
           height={height}
@@ -404,15 +426,15 @@ export const GetDogAvatar = ({ userId, width, height }) => {
   return (
     <React.Fragment>
       {dogProfile.dog_profile_pic === "" ? (
-        <Image
-          src={"/../public/defaultProfilePic/default_dog.jpg"}
+        <img
+          src={"/defaultProfilePic/default_dog.jpg"}
           alt={`${dogProfile.pet_name} Profile Picture`}
           height={height}
           width={width}
           className={styles.Image}
         />
       ) : (
-        <Image
+        <img
           src={dogProfile.dog_profile_pic}
           alt={`${dogProfile.pet_name} Profile Picture`}
           height={height}

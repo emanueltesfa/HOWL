@@ -10,6 +10,7 @@
   flex-direction: column;
   margin-top: 5vh;
   align-items: center;
+
 }
 
 .likeFeed {
@@ -27,6 +28,50 @@
   left: 50%;
 }
 .post {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  padding: 0.5vh 1vw;
+  background: transparent;
+  border: 2px solid #5ac8ca;
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #5ac8ca;
+}
+
+.profileCotainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 20vw;
+}
+
+.temp {
+  display: flex;
+  flex-direction: column;
+  min-height: 3rem;
+  justify-content: space-evenly;
+}
+
+.userSince {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   align-content: center;
   -ms-transform: translateY(-50%);
@@ -34,6 +79,7 @@
 
   top: 10%;
   left: 45%;
+
 }
 
 .content {
@@ -50,4 +96,22 @@
 
 .content::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
+}
+
+.verLine {
+  height: 95.5vh;
+  border-left: 1px solid white;
+  width: 0px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+.feedsLikes {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 48vw;
+  // margin-left: 1vw;
+  // margin-right: 1vw;
 }
