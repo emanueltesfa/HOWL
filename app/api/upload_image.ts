@@ -47,19 +47,18 @@ function upload_image(name: string, filename: string, data: File) {
   const container_name = name
   const container_client = service_client.getContainerClient(container_name)
 
-  if (!(container_client.exists())) {
+  if (!container_client.exists()) {
     container_client.create()
   }
 
   const blob_name = filename
   const blob_file = data
   const block_blob_client = container_client.getBlockBlobClient(blob_name)
+  console.log("Blob File", blob_file)
 
   const upload_blob_response = block_blob_client.upload(blob_file, blob_file.size)
 
-  console.log(
-    "Blob was uploaded successfully."
-  )
+  console.log("Blob was uploaded successfully.")
   return `https://${accountName}.blob.core.windows.net/${name}/${filename}`
 }
 export default upload_image
