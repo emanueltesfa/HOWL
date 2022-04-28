@@ -12,7 +12,7 @@ import { Suspense } from "react"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
-
+  
   return (
     <ErrorBoundary
       FallbackComponent={RootErrorFallback}
